@@ -4,20 +4,11 @@ import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import { Button, Error, FormField, Input, Label, Textarea } from "../styles";
 
-function NewRecipe({ user }) {
-  const [title, setTitle] = useState("My Awesome Recipe");
-  const [minutesToComplete, setMinutesToComplete] = useState("30");
-  const [instructions, setInstructions] = useState(`Here's how you make it.
-  
-## Ingredients
-
-- 1c Sugar
-- 1c Spice
-
-## Instructions
-
-**Mix** sugar and spice. _Bake_ for 30 minutes.
-  `);
+function NewBrewery({ user }) {
+  const [name, setName] = useState("My breweries");
+  const [phone, setPhone] = useState("xxx-xxx-xxxx");
+  const [website, setWebsite] = useState(`brewery website`);
+  const [address, setAddress] = useState(`brewery address`);
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
@@ -31,9 +22,10 @@ function NewRecipe({ user }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        title,
-        instructions,
-        minutes_to_complete: minutesToComplete,
+        name,
+        website,
+        phone,
+        address,
       }),
     }).then((r) => {
       setIsLoading(false);
@@ -48,38 +40,47 @@ function NewRecipe({ user }) {
   return (
     <Wrapper>
       <WrapperChild>
-        <h2>Create Recipe</h2>
+        <h2>Create Brewery</h2>
         <form onSubmit={handleSubmit}>
           <FormField>
-            <Label htmlFor="title">Title</Label>
+            <Label htmlFor="name">name</Label>
             <Input
               type="text"
-              id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </FormField>
           <FormField>
-            <Label htmlFor="minutesToComplete">Minutes to complete</Label>
+            <Label htmlFor="phone">Phone Number</Label>
             <Input
               type="number"
-              id="minutesToComplete"
-              value={minutesToComplete}
-              onChange={(e) => setMinutesToComplete(e.target.value)}
+              id="phone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
             />
           </FormField>
           <FormField>
-            <Label htmlFor="instructions">Instructions</Label>
-            <Textarea
-              id="instructions"
+            <Label htmlFor="website">Website</Label>
+            <Input
+              id="website"
               rows="10"
-              value={instructions}
-              onChange={(e) => setInstructions(e.target.value)}
+              value={website}
+              onChange={(e) => setWebsite(e.target.value)}
+            />
+          </FormField>
+          <FormField>
+            <Label htmlFor="address">Address</Label>
+            <Input
+              id="address"
+              rows="10"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
             />
           </FormField>
           <FormField>
             <Button color="primary" type="submit">
-              {isLoading ? "Loading..." : "Submit Recipe"}
+              {isLoading ? "Loading..." : "Submit Brewery"}
             </Button>
           </FormField>
           <FormField>
@@ -90,13 +91,13 @@ function NewRecipe({ user }) {
         </form>
       </WrapperChild>
       <WrapperChild>
-        <h1>{title}</h1>
+        <h1>{name}</h1>
         <p>
-          <em>Time to Complete: {minutesToComplete} minutes</em>
+          <em>Phone Number: {phone}</em>
           &nbsp;·&nbsp;
           <cite>By {user.username}</cite>
         </p>
-        <ReactMarkdown>{instructions}</ReactMarkdown>
+        <ReactMarkdown>{website}</ReactMarkdown>
       </WrapperChild>
     </Wrapper>
   );
@@ -114,4 +115,4 @@ const WrapperChild = styled.div`
   flex: 1;
 `;
 
-export default NewRecipe;
+export default NewBrewery;
