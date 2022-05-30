@@ -8,7 +8,7 @@ function BreweryList() {
   const [breweries, setBreweries] = useState([]);
 
   useEffect(() => {
-    fetch("/api/breweries")
+    fetch("/breweries")
       .then((r) => r.json())
       .then(setBreweries);
   }, []);
@@ -21,11 +21,13 @@ function BreweryList() {
             <Box>
               <h2>{brewery.name}</h2>
               <p>
-                <em>Phone Number: {brewery.phone} minutes</em>
+                <em> {brewery.website} </em>
+                <br/>
+                <em>Phone Number: {brewery.phone} </em>
                 &nbsp;·&nbsp;
                 <cite>By {brewery.user.username}</cite>
               </p>
-              <ReactMarkdown>{brewery.instructions}</ReactMarkdown>
+              <ReactMarkdown>{brewery.review}</ReactMarkdown>
             </Box>
           </Recipe>
         ))

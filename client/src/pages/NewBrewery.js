@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
-import { Button, Error, FormField, Input, Label, Textarea } from "../styles";
+import { Button, Error, FormField, Input, Label } from "../styles";
 
 function NewBrewery({ user }) {
   const [name, setName] = useState("My breweries");
@@ -16,7 +16,7 @@ function NewBrewery({ user }) {
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    fetch("/api/recipes", {
+    fetch("/breweries", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
