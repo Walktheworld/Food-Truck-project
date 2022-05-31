@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Box, Button } from "../styles";
+import ReviewForm from "../components/ReviewForm";
 
 function BreweryList() {
   const [breweries, setBreweries] = useState([]);
@@ -27,7 +28,8 @@ function BreweryList() {
                 &nbsp;·&nbsp;
                 <cite>By {brewery.user.username}</cite>
               </p>
-              <ReactMarkdown>{brewery.review}</ReactMarkdown>
+              <ReactMarkdown>{brewery.reviews}</ReactMarkdown>
+              <ReviewForm/>
             </Box>
           </Recipe>
         ))

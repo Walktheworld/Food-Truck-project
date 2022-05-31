@@ -11,7 +11,7 @@ class BreweriesController < ApplicationController
       private
     
       def brewery_params
-        params.permit(:name, :website, :phone, :address)
+        params.permit(:name, :website, :phone, :address, :review)
       end
     
 end
