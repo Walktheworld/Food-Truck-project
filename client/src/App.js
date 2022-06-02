@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
-import NavBar from "./NavBar";
-import Login from "../pages/Login";
-import BreweryList from "../pages/BreweryList";
-import NewBrewery from "../pages/NewBrewery";
+import NavBar from "./components/NavBar";
+import Login from "./components/Login";
+import NewBrewery from "./components/NewBrewery";
+import BreweryContainer from "./containers/BreweriesConatainer";
 
 function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // auto-login
     fetch("/api/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
@@ -28,7 +27,7 @@ function App() {
             <NewBrewery user={user} />
           </Route>
           <Route path="/">
-            <BreweryList />
+            <BreweryContainer />
           </Route>
         </Switch>
       </main>

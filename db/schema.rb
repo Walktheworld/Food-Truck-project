@@ -37,13 +37,11 @@ ActiveRecord::Schema.define(version: 2022_05_26_033743) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.bigint "brewery_id", null: false
     t.string "post"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["brewery_id"], name: "index_reviews_on_brewery_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -58,5 +56,4 @@ ActiveRecord::Schema.define(version: 2022_05_26_033743) do
   add_foreign_key "breweries", "users"
   add_foreign_key "recipes", "users"
   add_foreign_key "reviews", "breweries"
-  add_foreign_key "reviews", "users"
 end
