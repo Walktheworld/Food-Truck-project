@@ -1,7 +1,6 @@
-import React, {useState, useContext, useCallback} from "react"
-// import {useHistory} from "react-router-dom"
-import {MessageContext} from "../context/message"
+import React, {useState, useContext,  useCallback} from "react"
 
+import {MessageContext} from "../context/message"
 
 const UserContext = React.createContext()
 
@@ -26,7 +25,7 @@ function UserProvider({children}) {
 
     const login = async (userInfo) => {
         try {
-            const resp = await fetch("/api/login", {
+            const resp = await fetch("/api/v1/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2022_05_26_033743) do
     t.string "name"
     t.string "address"
     t.string "website"
-    t.integer "phone"
+    t.bigint "phone"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

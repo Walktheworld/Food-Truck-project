@@ -16,8 +16,12 @@ Rails.application.routes.draw do
   #       resources :reviews, shallow: true
   #     end
   #   end
-  resources :breweries
-  resources :reviews
+
+  resources :reviews, only: [:index]
+  resources :breweries do
+    resources :reviews, only: [:index, :create]
+    # resources :reviews, shallow: true
+  end
 
   namespace :api do
     post "/signup", to: "users#create"

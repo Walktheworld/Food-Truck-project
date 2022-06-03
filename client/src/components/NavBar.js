@@ -5,7 +5,7 @@ import { Button } from "../styles";
 
 function NavBar({ user, setUser }) {
   function handleLogoutClick() {
-    fetch("/logout", { method: "DELETE" }).then((r) => {
+    fetch("/api/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
         setUser(null);
       }
@@ -15,7 +15,7 @@ function NavBar({ user, setUser }) {
   return (
     <Wrapper>
       <Logo>
-        <Link to="/">Belch It</Link>
+        <Link to="/breweries">Belch It</Link>
       </Logo>
       <Nav>
         <Button as={Link} to="/new">

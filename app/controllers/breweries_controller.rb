@@ -9,26 +9,22 @@ class BreweriesController < ApplicationController
     def show 
       render json: serialized_brewery
     end
-      # def create
-      #   @brewery = current_user.breweries.create!(brewery_params)
-      #   render json: find_brewery, status: :created
-      # end
 
-      def create
-        @brewery = current_user.breweries.create!(brewery_params)
-        render json: serialized_brewery, status: 201
+    def create
+      @brewery = current_user.breweries.create!(brewery_params)
+      render json: serialized_brewery, status: 201
+    end
+
+    def destroy
+      if current_user.breweries.include?(@brewery)
+          if @brewery&.destroy
+              render json: {message: "Successfully destroyed brewery!"}
+          else
+              render json: {error: @brewery.errors.full_messages.to_sentence}
+          end
+      else
+          no_route
       end
-
-      def destroy
-        if current_user.breweries.include?(@brewery)
-            if @brewery&.destroy
-                render json: {message: "Successfully destroyed brewery!"}
-            else
-                render json: {error: @brewery.errors.full_messages.to_sentence}
-            end
-        else
-            no_route
-        end
     end
     
       private

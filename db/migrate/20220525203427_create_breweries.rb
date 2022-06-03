@@ -4,7 +4,7 @@ class CreateBreweries < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :address 
       t.string :website
-      t.integer :phone
+      t.bigint :phone
       t.references :user, null: false, foreign_key: true
 
       t.timestamps
