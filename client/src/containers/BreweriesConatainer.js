@@ -29,7 +29,6 @@ const BreweriesConatainer = () => {
     if (loading) return <h1>...Loading...</h1>
   return (
     <div>
-        <h2>Breweries</h2>
         <BreweryList breweries={breweries} findBrewery={findBrewery} />
     </div>
   )

@@ -10,8 +10,6 @@ const EditBreweryForm = ({brewObj, handleUpdate}) => {
         website: brewObj.website
     });
     const [errors, setErrors]= useState([])
-    
-    // const {setMessage} =  useContext(MessageContext);
 
     const handleChange = (e) => {
         setBrewery({
@@ -58,12 +56,8 @@ const EditBreweryForm = ({brewObj, handleUpdate}) => {
                 <label htmlFor="address">Address</label>
                 <input onChange={handleChange} type="text" name="address" value={brewery.address} required/><br />
                 <input type="submit" value="Update Post" />
-                {/* <div>
-                {errors?.map((error) => (
-                    <h1 key={error}> {error} </h1>
-                ))}
-                </div> */}
             </form>
+            <div></div>
 
         </>
     )

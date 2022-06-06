@@ -1,21 +1,5 @@
 Rails.application.routes.draw do
-  # scope :api do
-  #   scope :v1 do
 
-  #     resources :users, only: [:update, :destroy]
-  #     post "/signup", to: "users#create" 
-  #     get "/me", to: "users#show"
-  #     post "/login", to: "sessions#create"
-  #     delete "/logout", to: "sessions#destroy"
-      
-  #     # get "/reviews", to: "reviews#index"
-  #     resources :reviews, only: [:index]
-  #     # "/breweries/:id/reviews"
-  #     resources :breweries do
-  #       # resources :reviews, only: [:index, :create]
-  #       resources :reviews, shallow: true
-  #     end
-  #   end
 
 
   namespace :api do
@@ -25,7 +9,6 @@ Rails.application.routes.draw do
     delete "/logout", to: "sessions#destroy"
 
     resources :breweries do
-      # resources :reviews, only: [:index, :create, :show]
       resources :reviews, shallow: true
     end
   end
