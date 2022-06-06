@@ -10,7 +10,7 @@ function UserProvider({children}) {
 
     const getCurrentUser = useCallback(async () => { 
         try {
-            const resp = await fetch("/api/v1/me")
+            const resp = await fetch("/api/me")
              if (resp.status === 200) {
                 const data = await resp.json()
                 setUser({...data.data.attributes, breweries: data.data.relationships.breweries.data})
@@ -25,7 +25,7 @@ function UserProvider({children}) {
 
     const login = async (userInfo) => {
         try {
-            const resp = await fetch("/api/v1/login", {
+            const resp = await fetch("/api/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -49,7 +49,7 @@ function UserProvider({children}) {
     }
     const signup = async (userInfo) => {
         try {
-            const resp = await fetch("/api/v1/signup", {
+            const resp = await fetch("/api/signup", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -71,7 +71,7 @@ function UserProvider({children}) {
     }
     const signout = async () => { 
         try {
-            const resp = await fetch("/api/v1/logout", {
+            const resp = await fetch("/api/logout", {
                 method: "DELETE"
             })
             setMessage({messge: "You have been logged out", color: "green"})

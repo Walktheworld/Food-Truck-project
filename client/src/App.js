@@ -6,6 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NewBrewery from "./components/NewBrewery";
 import BreweryContainer from "./containers/BreweriesConatainer";
 import Home from "./components/Home";
+import ReviewsList from "./components/ReviewsList";
+import ReviewCard from "./components/ReviewCard";
+import BreweryCard from "./components/BreweryCard";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -28,10 +31,20 @@ function App() {
         <Route exact path="/"><Home/></Route>
           <Route path="/new">
             <NewBrewery user={user} />
+          </Route>          
+          <Route path="/breweries/:id/reviews">
+            <ReviewsList user={user}/>
+          </Route>
+          <Route path="/breweries/:id">
+            <BreweryCard user={user}/>
+          </Route>
+          <Route path="/reviews/:id">
+            <ReviewCard user={user}/>
           </Route>
           <Route path="/breweries">
-            <BreweryContainer />
+            <BreweryContainer user={user}/>
           </Route>
+
         </Switch>
       </main>
     </>

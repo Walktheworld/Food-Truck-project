@@ -18,6 +18,9 @@ function NavBar({ user, setUser }) {
         <Link to="/breweries">Belch It</Link>
       </Logo>
       <Nav>
+        <Button as={Link} to="/">
+          Home
+        </Button>
         <Button as={Link} to="/new">
           New Brewery
         </Button>

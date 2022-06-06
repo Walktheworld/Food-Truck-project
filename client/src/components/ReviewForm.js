@@ -96,31 +96,33 @@ const ReviewForm = ({breweryId, addNewReview}) => {
             alert("You must fill in all the information please!")
         }
 
-        fetch(`/breweries/${breweryId}/reviews`, {
+        fetch(`/api/breweries/${breweryId}/reviews`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(review)
         })
-        .then(resp => {
+        .then(resp => {                   
+          setIsLoading(false);
             if (resp.status === 201) {
                 resp.json()
                 .then(review => {
                     addNewReview(review)
-                    setReviews({post: ""})
-                    setIsLoading(false);
+                    setReviews({post: review.post})
+                    // setIsLoading(false);
+
 
                 })
             } else {
                 resp.json()
                 .then(errorObj => {
                     alert(errorObj.error)
-                    setReviews({post: ""})
                     
                 })
             }
         })
+        // .then
         .catch(err => alert(err))
         
     }

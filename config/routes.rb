@@ -17,17 +17,17 @@ Rails.application.routes.draw do
   #     end
   #   end
 
-  resources :reviews, only: [:index]
-  resources :breweries do
-    resources :reviews, only: [:index, :create]
-    # resources :reviews, shallow: true
-  end
 
   namespace :api do
     post "/signup", to: "users#create"
     get "/me", to: "users#show"
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
+
+    resources :breweries do
+      # resources :reviews, only: [:index, :create, :show]
+      resources :reviews, shallow: true
+    end
   end
   # all other routes will be load our React application
   # this route definition matches:

@@ -3,10 +3,10 @@ import {useParams} from "react-router-dom"
 
 const ReviewCard = ({review}) => {
     const {id} = useParams()
-    const [reviewObj, setReviewObj] = useState(null);
+    const [reviewObj, setReviewObj] = useState([]);
     useEffect(() => {   
         if (!review) {
-            fetch(`/reviews/${id}`)
+            fetch(`/api/reviews/${id}`)
             .then(resp => resp.json())
             .then(review => setReviewObj(review))
         }
@@ -16,7 +16,7 @@ const ReviewCard = ({review}) => {
     if (!finalReview) return <h1>Loading...</h1>
   return (
     <div>
-        <h4>{finalReview.post}</h4>
+        <p>{finalReview.post} Review by:{finalReview.user_id}</p>
     </div>
   )
 }

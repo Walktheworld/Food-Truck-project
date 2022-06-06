@@ -9,7 +9,7 @@ const BreweriesConatainer = () => {
     useEffect(() => {
         const fetchData = async () =>{
             try {
-                const resp = await fetch("/breweries")
+                const resp = await fetch("/api/breweries")
                 const data = await resp.json()
                 setBreweries(data)
                 setLoading(false)
@@ -19,14 +19,18 @@ const BreweriesConatainer = () => {
         }
         fetchData()
     }, []);
-    
+
+    const findBrewery= (id)=>{
+        const foundBrewery =breweries.filter(brewery => brewery.id !== id)
+        setBreweries(foundBrewery)
+    }
 
     
     if (loading) return <h1>...Loading...</h1>
   return (
     <div>
         <h2>Breweries</h2>
-        <BreweryList breweries={breweries} />
+        <BreweryList breweries={breweries} findBrewery={findBrewery} />
     </div>
   )
 }

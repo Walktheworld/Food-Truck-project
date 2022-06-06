@@ -1,4 +1,4 @@
-class ReviewsController < ApplicationController
+class Api::ReviewsController < ApplicationController
     before_action :find_review, only: [:show, :update, :destroy]
     
     def index
@@ -6,18 +6,15 @@ class ReviewsController < ApplicationController
       render json: reviews, include: :breweries
     end
       
-      # def create
-      #   review = @current_user.breweries.reviews.create!(review_params)
-      #   render json: review, status: :created
-      # end
     
     def create 
       if params[:brewery_id]
           brewery = Brewery.find(params[:brewery_id])
-          @review = brewery.reviews.create!(review_params)
+          @review = @current_user.reviews.create!(brewery: brewery, post: params[:post])
           render json: serialized_review, status: 201
       end
     end
+
     def destroy 
       if @review&.destroy
           render json: {message: "Successfully destroyed review!"}
@@ -31,7 +28,7 @@ class ReviewsController < ApplicationController
       private
     
     def find_review
-      @review = Review.find(params[:id])
+      @review = Review.find(params[:brewry_id])
     end
 
     def serialized_review

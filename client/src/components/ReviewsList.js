@@ -4,11 +4,11 @@ import {useState, useEffect} from "react"
 
 const ReviewsList = ({reviews, handleError}) => {
     const {breweryId} = useParams()
-    const [reviewsList, setReviewList] = useState(null)
+    const [reviewsList, setReviewList] = useState([])
     
     useEffect(() => {
         if (!reviews) {
-            fetch(`/breweries/${breweryId}/reviews`)
+            fetch(`/api/breweries/${breweryId}/reviews`)
             .then(resp => {
                 if (resp.status === 200) {
                     resp.json()
@@ -23,10 +23,11 @@ const ReviewsList = ({reviews, handleError}) => {
     }, [breweryId, reviews, handleError])
 
     // if (!reviews) return <h2>The data you tried to access does not exist!</h2>
-    const finalreviewsList = reviews ? reviews : reviewsList
-    const renderreviews = finalreviewsList?.map(review => <ReviewCard key={review.id} review={review}/>)
+    const finalReviewsList = reviews ? reviews : reviewsList
+    const renderReviews = finalReviewsList?.map(review => <ReviewCard key={review.id} review={review}/>)
+    // console.log(reviews)
     return (
-        <div>{renderreviews}</div>
+        <div>{renderReviews}</div>
     )
 }
 

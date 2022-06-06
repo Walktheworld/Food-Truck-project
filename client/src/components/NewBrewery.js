@@ -13,10 +13,10 @@ function NewBrewery({ user }) {
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 
-  function handleSubmit(e) {
+  const handleSubmit= e => {
     e.preventDefault();
     setIsLoading(true);
-    fetch("/breweries", {
+    fetch("/api/breweries", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -27,7 +27,8 @@ function NewBrewery({ user }) {
         phone,
         address,
       }),
-    }).then((r) => {
+      })
+      .then((r) => {
       setIsLoading(false);
       if (r.ok) {
         history.push("/breweries");

@@ -1,4 +1,4 @@
-class BreweriesController < ApplicationController
+class Api::BreweriesController < ApplicationController
   skip_before_action :authorized!, only: [:index]
   before_action :find_brewery, only: [:show, :update, :destroy]
 
@@ -14,6 +14,11 @@ class BreweriesController < ApplicationController
       @brewery = current_user.breweries.create!(brewery_params)
       render json: serialized_brewery, status: 201
     end
+
+    def update #patch "/posts/:id"
+      @brewery&.update!(brewery_params)
+      render json: @brewery, status: :created
+  end
 
     def destroy
       if current_user.breweries.include?(@brewery)
