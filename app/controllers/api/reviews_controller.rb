@@ -28,7 +28,7 @@ class Api::ReviewsController < ApplicationController
       private
     
     def find_review
-      @review = Review.find(params[:brewry_id])
+      @review = Review.find(params[:brewery_id])
     end
 
     def serialized_review

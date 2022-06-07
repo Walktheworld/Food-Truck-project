@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react"
-import { useParams, useLocation } from "react-router-dom"
+import { useParams, useLocation, Link } from "react-router-dom"
 import styled from "styled-components";
 import { Box, Button } from "../styles";
 import ReviewForm from "../components/ReviewForm";
@@ -7,15 +7,11 @@ import ReviewForm from "../components/ReviewForm";
 import ReviewCard from "../components/ReviewCard";
 import EditBreweryForm from "./EditBreweryForm";
 const BreweryCard= ({brewery, findBrewery}) => {
-
     const {id} = useParams()
-    // const history = useHistory() 
     const [reviews, setReviews] = useState([]);
     const [editMode, setEditMode] = useState(false);
     const [brewObj, setBrewObj] = useState(null);
-    const location = useLocation()
-    // const {setMessage} =  useContext(MessageContext);
-    
+    const location = useLocation()    
     
     useEffect(() => {   
         if (!brewery) {
@@ -52,9 +48,8 @@ const BreweryCard= ({brewery, findBrewery}) => {
         <Wrapper>
              <Brewery key={finalBrewery.id}>
             {!editMode ?<> 
-                   
                         <Box>
-                            <h2>{finalBrewery.name}</h2>
+                            <h2 ><Link to={`/breweries/${finalBrewery.id}`}>{finalBrewery.name}</Link></h2>
                             <p>
                             <em> {finalBrewery.website} </em>
                             <br/>
@@ -63,27 +58,20 @@ const BreweryCard= ({brewery, findBrewery}) => {
                             &nbsp;·&nbsp;
                             <br/>
                             <em>Phone #: {finalBrewery.phone} </em>
-                            &nbsp;·&nbsp;
-                            <cite>By {finalBrewery.user.username}</cite>
                             <br/>
-                            {/* <Button name="edit-mode" id="edit-btn" onClick={handleClick}>Edit</Button>
-                            &nbsp; &nbsp;
-                            <Button name="delete" id="delete-btn" onClick={handleClick}>Delete</Button> */}
                             </p>
-                            {/* <ReviewForm addNewReview={addNewReview} breweryId={finalBrewery.id} /> */}
-                            {/* <ReviewsList reviews={reviews} /> */}
-                            {/* {brewery.reviews.map((review) => <ReviewCard key={review.id} review={review} revies={reviews}/>)} */}   
+  
                         </Box>
-            {location.pathname !== "/posts" ? <>
+            {location.pathname !== "/breweries/:id" ? <>
                 <Button name="edit-mode" id="edit-btn" onClick={handleClick}>Edit</Button>
                 &nbsp; &nbsp;
                 <Button name="delete" id="delete-btn" onClick={handleClick}>Delete</Button>
             </> : null}
             </> : <EditBreweryForm brewObj={finalBrewery} handleUpdate={handleUpdate}/>}
             <hr />
-            {brewery.reviews.map((review) => <ReviewCard key={review.id} review={review} revies={reviews}/>)} 
+            {finalBrewery.reviews.map((review) => <ReviewCard key={review.id} review={review} revies={reviews}/>)} 
             <hr />
-            {location.pathname !== "/posts" ? (<>
+            {location.pathname !== "/breweries/:id" ? (<>
                 <ReviewForm addNewReview={addNewReview} breweryId={finalBrewery.id} />
             <hr />
             <hr />

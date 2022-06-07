@@ -1,6 +1,5 @@
 import {useState} from "react"
-// import { MessageContext } from "../context/message";
-
+import {useHistory} from "react-router-dom"
 
 const EditBreweryForm = ({brewObj, handleUpdate}) => {
     const [brewery, setBrewery] = useState({
@@ -9,7 +8,7 @@ const EditBreweryForm = ({brewObj, handleUpdate}) => {
         phone: brewObj.phone,
         website: brewObj.website
     });
-    const [errors, setErrors]= useState([])
+    const history = useHistory()
 
     const handleChange = (e) => {
         setBrewery({
@@ -24,7 +23,7 @@ const EditBreweryForm = ({brewObj, handleUpdate}) => {
             alert("You must fill in all the information please!")
         }
 
-       fetch(`api/breweries/${brewObj.id}`, {
+       fetch(`/api/breweries/${brewObj.id}`, {
            method: "PATCH",
            headers: {
                "Content-Type": "application/json"
@@ -34,13 +33,16 @@ const EditBreweryForm = ({brewObj, handleUpdate}) => {
        .then((resp) => {
             if (resp.status === 201) {
                 resp.json()
-                .then(data => handleUpdate(data))
+                .then(data => {
+                    handleUpdate(data)
+                    history.push(`/breweries/${brewObj.id}`)
+                })
             } else {
                 resp.json()
-                .then(errorObj => setErrors(errorObj.errors))
+                .then(errorObj => alert(errorObj.errors))
             }
         })
-        .catch(error => setErrors(error.errors))  
+        .catch(error => alert(error.errors))  
         
     }
     return (
@@ -56,8 +58,9 @@ const EditBreweryForm = ({brewObj, handleUpdate}) => {
                 <label htmlFor="address">Address</label>
                 <input onChange={handleChange} type="text" name="address" value={brewery.address} required/><br />
                 <input type="submit" value="Update Post" />
+                
             </form>
-            <div></div>
+
 
         </>
     )

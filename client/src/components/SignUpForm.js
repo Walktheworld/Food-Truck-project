@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Error, Input, FormField, Label, Textarea } from "../styles";
-
+import {useHistory} from "react-router-dom"
 function SignUpForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -9,6 +9,7 @@ function SignUpForm({ onLogin }) {
   const [bio, setBio] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const history = useHistory()
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -29,7 +30,11 @@ function SignUpForm({ onLogin }) {
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
-        r.json().then((user) => onLogin(user));
+        r.json().then((user) => {
+          onLogin(user)
+          history.push("/new")
+        
+        });
       } else {
         r.json().then((err) => setErrors(err.errors));
       }

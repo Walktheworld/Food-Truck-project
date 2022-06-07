@@ -15,11 +15,11 @@ function NavBar({ user, setUser }) {
   return (
     <Wrapper>
       <Logo>
-        <Link to="/breweries">Belch It</Link>
+        <Link to="/">Belch It</Link>
       </Logo>
       <Nav>
-        <Button as={Link} to="/">
-          Home
+        <Button as={Link} to="/breweries">
+          Breweries
         </Button>
         <Button as={Link} to="/new">
           New Brewery

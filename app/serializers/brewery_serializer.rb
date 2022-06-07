@@ -3,8 +3,5 @@ class BrewerySerializer < ActiveModel::Serializer
 
   attributes :id, :name, :website, :phone, :address, :reviews, :user
 
-  # attribute :reviews do |object|
-  #   ReviewSerializer.new(object.reviews)
-  # end
   
 end

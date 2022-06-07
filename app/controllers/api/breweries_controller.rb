@@ -15,10 +15,10 @@ class Api::BreweriesController < ApplicationController
       render json: serialized_brewery, status: 201
     end
 
-    def update #patch "/posts/:id"
+    def update 
       @brewery&.update!(brewery_params)
       render json: @brewery, status: :created
-  end
+    end
 
     def destroy
       if current_user.breweries.include?(@brewery)
