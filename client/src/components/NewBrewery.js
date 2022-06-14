@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
-// import ReactMarkdown from "react-markdown";
 import { Button, Error, FormField, Input, Label } from "../styles";
 
 function NewBrewery({ user }) {
@@ -102,7 +101,6 @@ function NewBrewery({ user }) {
           &nbsp;·&nbsp; 
           <cite>By {user.username}</cite>
         </p>
-        {/* <ReactMarkdown>{website}</ReactMarkdown> */}
       </WrapperChild>
     </Wrapper>
   );

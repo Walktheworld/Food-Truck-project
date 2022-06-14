@@ -3,7 +3,6 @@ import { useParams, useLocation, Link } from "react-router-dom"
 import styled from "styled-components";
 import { Box, Button } from "../styles";
 import ReviewForm from "../components/ReviewForm";
-// import ReviewsList from "../components/ReviewsList";
 import ReviewCard from "../components/ReviewCard";
 import EditBreweryForm from "./EditBreweryForm";
 const BreweryCard= ({brewery, findBrewery}) => {

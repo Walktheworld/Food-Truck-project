@@ -22,20 +22,13 @@ const ReviewsList = ({reviews, handleError}) => {
         }
     }, [breweryId, reviews, handleError])
 
-    // if (!reviews) return <h2>The data you tried to access does not exist!</h2>
+
     const finalReviewsList = reviews ? reviews : reviewsList
     const renderReviews = finalReviewsList?.map(review => <ReviewCard key={review.id} review={review}/>)
-    // console.log(reviews)
+
     return (
         <div>{renderReviews}</div>
     )
 }
 
 export default ReviewsList
-// const ReviewsList = ({reviews}) => {
-//     const renderReviews = reviews.map(review => <ReviewCard key={review.id} review={review}/>)
-//     return (
-//       <div>{renderReviews}</div>
-//     )
-//   }
-//   export default ReviewsList
