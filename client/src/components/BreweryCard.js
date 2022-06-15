@@ -11,6 +11,7 @@ const BreweryCard= ({brewery, findBrewery}) => {
     const [editMode, setEditMode] = useState(false);
     const [brewObj, setBrewObj] = useState(null);
     const location = useLocation()    
+    const [users, setUsers] = useState([]);
     
     useEffect(() => {   
         if (!brewery) {
@@ -22,6 +23,14 @@ const BreweryCard= ({brewery, findBrewery}) => {
             })
         }
     }, [brewery, id]);
+
+    useEffect(() => {   
+          fetch(`/api/users`)
+          .then(resp => resp.json())
+          .then(user => {
+            setUsers(user)
+          })
+    }, []);
 
     const addNewReview = (reviewObj) => {
         setReviews(currentReviews => [reviewObj, ...currentReviews])
@@ -68,7 +77,7 @@ const BreweryCard= ({brewery, findBrewery}) => {
             </> : null}
             </> : <EditBreweryForm brewObj={finalBrewery} handleUpdate={handleUpdate}/>}
             <hr />
-            {finalBrewery.reviews.map((review) => <ReviewCard key={review.id} review={review} revies={reviews}/>)} 
+            {finalBrewery.reviews.map((review) => <ReviewCard key={review.id} review={review} revies={reviews} users={users}/>)} 
             <hr />
             {location.pathname !== "/breweries/:id" ? (<>
                 <ReviewForm addNewReview={addNewReview} breweryId={finalBrewery.id} />
