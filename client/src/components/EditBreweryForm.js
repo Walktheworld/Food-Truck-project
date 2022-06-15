@@ -35,7 +35,7 @@ const EditBreweryForm = ({brewObj, handleUpdate}) => {
                 resp.json()
                 .then(data => {
                     handleUpdate(data)
-                    history.push(`/breweries/${brewObj.id}`)
+                    history.push(`/breweries`)
                 })
             } else {
                 resp.json()

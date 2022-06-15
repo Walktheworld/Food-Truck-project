@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import BreweryList from "../components/BreweryList"
 
-const BreweriesConatainer = () => {
+const BreweriesConatainer = ({user}) => {
     const [breweries, setBreweries] = useState([]);
     const [loading, setLoading] = useState(true);
     
@@ -20,16 +20,16 @@ const BreweriesConatainer = () => {
         fetchData()
     }, []);
 
-    const findBrewery= (id)=>{
-        const foundBrewery =breweries.filter(brewery => brewery.id !== id)
-        setBreweries(foundBrewery)
-    }
+    // const findBrewery= (id)=>{
+    //     const foundBrewery =breweries.filter(brewery => brewery.id !== id)
+    //     setBreweries(foundBrewery)
+    // }
 
     
     if (loading) return <h1>...Loading...</h1>
   return (
     <div>
-        <BreweryList breweries={breweries} findBrewery={findBrewery} />
+        <BreweryList breweries={breweries} user={user}  />
     </div>
   )
 }

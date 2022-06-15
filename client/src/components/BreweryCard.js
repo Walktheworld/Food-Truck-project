@@ -1,17 +1,18 @@
 import {useState, useEffect} from "react"
-import { useParams, useLocation, Link } from "react-router-dom"
+import { useParams, useLocation, Link, useHistory } from "react-router-dom"
 import styled from "styled-components";
 import { Box, Button } from "../styles";
 import ReviewForm from "../components/ReviewForm";
 import ReviewCard from "../components/ReviewCard";
 import EditBreweryForm from "./EditBreweryForm";
-const BreweryCard= ({brewery, findBrewery}) => {
+const BreweryCard= ({brewery, user}) => {
     const {id} = useParams()
     const [reviews, setReviews] = useState([]);
     const [editMode, setEditMode] = useState(false);
     const [brewObj, setBrewObj] = useState(null);
     const location = useLocation()    
     const [users, setUsers] = useState([]);
+    const history = useHistory()
     
     useEffect(() => {   
         if (!brewery) {
@@ -43,14 +44,15 @@ const BreweryCard= ({brewery, findBrewery}) => {
     
     const handleClick = (e) => { 
         if (e.target.name === "delete") {
-          fetch(`/api/breweries/${brewery.id}`, {    method: "DELETE"
+          fetch(`/api/breweries/${finalBrewery.id}`, {    method: "DELETE"
           })
-          .then(() => findBrewery(brewery.id))
+          .then(() => history.push('/breweries'))
         } else {
             setEditMode(true)
         }
     }
     const finalBrewery = brewery ? brewery : brewObj
+
     if (!finalBrewery) return <h1>Loading...</h1>
     return (
         <Wrapper>
@@ -66,11 +68,13 @@ const BreweryCard= ({brewery, findBrewery}) => {
                             &nbsp;·&nbsp;
                             <br/>
                             <em>Phone #: {finalBrewery.phone} </em>
-                            <br/>
+                            <br/>                            
+                            <em>Reviewed by {finalBrewery.reviewers?.length || 0} users </em>
                             </p>
+
   
                         </Box>
-            {location.pathname !== "/breweries/:id" ? <>
+            {location.pathname !== "/breweries/:id" && finalBrewery?.user_id === user.id ? <>
                 <Button name="edit-mode" id="edit-btn" onClick={handleClick}>Edit</Button>
                 &nbsp; &nbsp;
                 <Button name="delete" id="delete-btn" onClick={handleClick}>Delete</Button>

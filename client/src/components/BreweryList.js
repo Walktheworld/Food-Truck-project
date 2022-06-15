@@ -2,8 +2,8 @@ import BreweryCard from "./BreweryCard"
 import styled from "styled-components";
 
 
-const BreweryList = ({breweries, findBrewery}) => {
-  const renderBreweries = breweries?.map(brewery => <BreweryCard key={brewery.id} brewery={brewery} findBrewery={findBrewery}/>)
+const BreweryList = ({breweries, user}) => {
+  const renderBreweries = breweries?.map(brewery => <BreweryCard key={brewery.id} brewery={brewery} user={user} />)
   return (
     <Wrapper>{renderBreweries}</Wrapper>
   )

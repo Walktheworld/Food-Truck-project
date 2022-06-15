@@ -3,7 +3,7 @@ const Home= () => {
     return (
         <Mainpage>
             <h3>
-                Please join us in building the most extensive brewery databade in the world. 
+                Please join us in building the most extensive brewery database in the world. 
             </h3>
             <h3>
                 Add breweries to the community and leave a review for your favorites! Belch It to the world!
