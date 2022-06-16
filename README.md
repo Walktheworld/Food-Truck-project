@@ -12,7 +12,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Introduction
 
-Welcome to Belch it, where we are building the most extensive brewery database for users to share their favorite breweries. Once a user has registered, they will have the ability to add a new brewery as well as edit, and delete breweries that they have created. All registered users will have the abitlty to leave a review on the breweries in the database.  
+Welcome to Belch it, where we are building the most extensive brewery database for users to share their favorite breweries. Once a user has registered, they will have the ability to add a new brewery as well as edit, and delete breweries that the current user created. All registered users will have the abitlty to leave a review on the breweries in the database.  
 
 So drink it, and "Belch it" to the world!
 
