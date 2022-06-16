@@ -5,6 +5,6 @@ class Brewery < ApplicationRecord
 
     has_many :reviewers, through: :reviews, source: :reviewer
 
-    validates :name, presence: true
+    validates :name, presence: true, uniqueness: true
 
 end
