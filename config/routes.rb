@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get "/me", to: "users#show"
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
+    get "/profile", to: "users#profile"
 
     resources :breweries do
       resources :reviews, shallow: true
