@@ -16,6 +16,11 @@ class Api::UsersController < ApplicationController
     render json: @current_user
   end
 
+  def profile
+    reviewed = @current_user.reviewed_breweries
+    render json: reviewed
+  end
+
   private
   def serialized_user
     @user.to_json(include: :breweries)
