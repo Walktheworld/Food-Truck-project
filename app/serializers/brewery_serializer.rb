@@ -5,4 +5,6 @@ class BrewerySerializer < ActiveModel::Serializer
   def reviewers
     self.object.reviewers.uniq
   end
+
+  
 end

@@ -20,10 +20,6 @@ const BreweriesConatainer = ({user}) => {
         fetchData()
     }, []);
 
-    // const findBrewery= (id)=>{
-    //     const foundBrewery =breweries.filter(brewery => brewery.id !== id)
-    //     setBreweries(foundBrewery)
-    // }
 
     
     if (loading) return <h1>...Loading...</h1>
