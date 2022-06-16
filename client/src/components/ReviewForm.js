@@ -40,7 +40,7 @@ const ReviewForm = ({breweryId, addNewReview}) => {
                 .then(review => {
                     addNewReview(review)
                     setReviews({post: review.post})
-                    history.push(`/breweries/${breweryId}`);
+                    history.push(`/breweries`);
 
 
                 })

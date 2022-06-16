@@ -83,7 +83,7 @@ const BreweryCard= ({brewery, user}) => {
             <hr />
             {finalBrewery.reviews.map((review) => <ReviewCard key={review.id} review={review} revies={reviews} users={users}/>)} 
             <hr />
-            {location.pathname !== "/breweries/:id" ? (<>
+            {location.pathname !== "/breweries" ? (<>
                 <ReviewForm addNewReview={addNewReview} breweryId={finalBrewery.id} />
             <hr />
             <hr />
