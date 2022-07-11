@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
 
+
   namespace :api do
     get "/users", to: "users#index"
     post "/signup", to: "users#create"
@@ -9,10 +10,12 @@ Rails.application.routes.draw do
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
     get "/profile", to: "users#profile"
-
-    resources :breweries do
-      resources :reviews, shallow: true
-    end
+    resources :posts
+    resources :pages
+    resources :reviews
+    # resources :breweries do
+    #   resources :reviews, shallow: true
+    # end
   end
   # all other routes will be load our React application
   # this route definition matches:
