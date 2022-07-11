@@ -3,14 +3,14 @@ class Api::ReviewsController < ApplicationController
     
     def index
       reviews = Review.all
-      render json: reviews, include: :breweries
+      render json: reviews, include: :pages
     end
       
     
     def create 
-      if params[:brewery_id]
-          brewery = Brewery.find(params[:brewery_id])
-          @review = @current_user.reviews.create!(brewery: brewery, post: params[:post])
+      if params[:page_id]
+          brewery = Brewery.find(params[:page_id])
+          @review = @current_user.reviews.create!(page: page, comment: params[:comment])
           render json: serialized_review, status: 201
       end
     end
@@ -28,15 +28,15 @@ class Api::ReviewsController < ApplicationController
       private
     
     def find_review
-      @review = Review.find(params[:brewery_id])
+      @review = Review.find(params[:page_id])
     end
 
     def serialized_review
-        @review.to_json(include: :brewery)
+        @review.to_json(include: :page)
     end
 
     def review_params
-      params.permit(:post, :brewery_id)
+      params.permit(:comment, :page_id)
     end
 
 
