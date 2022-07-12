@@ -1,5 +1,5 @@
 class ReviewSerializer < ActiveModel::Serializer
-  attributes :post, :created_at
-  belongs_to :brewery, serializer: BrewerySerializer
+  attributes :comment, :created_at
+  belongs_to :page, serializer: PageSerializer
 
 end

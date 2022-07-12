@@ -1,3 +1,8 @@
 class PageSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :name, :website, :phone, :address, :reviews, :user, :reviewers
+
+  def reviewers
+    self.object.reviewers.uniq
+  end
+
 end
