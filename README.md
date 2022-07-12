@@ -8,41 +8,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 
-# Phase 3 Project "Belch It"
-
-## Introduction
-
-Welcome to Belch it, where we are building the most extensive brewery database for users to share their favorite breweries. Once a user has registered, they will have the ability to add a new brewery as well as edit, and delete breweries that the current user created. All registered users will have the abitlty to leave a review on the breweries in the database.  
-
-So drink it, and "Belch it" to the world!
-
-
-## User
-(has many :breweries)
-(has many :reviews)
-
-`user` table
-- username
-- bio
-- image_url
-
-## Brewery
-(belongs to :user)
-(has many :reviews)
-
-`brewery` table
-- name
-- phone
-- address
-- website
-
-## Review
-(belongs to :user)
-(belongs to :brewery)
-
-`review` table
-- post
-
 ## Resources
 
 - [create-react-app][]
