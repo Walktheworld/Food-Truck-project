@@ -10,12 +10,10 @@ Rails.application.routes.draw do
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
     get "/profile", to: "users#profile"
-    resources :posts
-    resources :pages
-    resources :reviews
-    # resources :breweries do
-    #   resources :reviews, shallow: true
-    # end
+    resources :pages do
+      resources :reviews, shallow: true
+      resources :posts, shallow: true
+    end
   end
   # all other routes will be load our React application
   # this route definition matches:
