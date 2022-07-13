@@ -9,7 +9,7 @@ class Api::ReviewsController < ApplicationController
     
     def create 
       if params[:page_id]
-          brewery = Brewery.find(params[:page_id])
+          page = Page.find(params[:page_id])
           @review = @current_user.reviews.create!(page: page, comment: params[:comment])
           render json: serialized_review, status: 201
       end
@@ -22,8 +22,6 @@ class Api::ReviewsController < ApplicationController
           render json: {error: @review.errors.full_messages.to_sentence}
       end
     end
-
-
 
       private
     
