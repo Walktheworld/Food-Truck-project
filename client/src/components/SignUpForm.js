@@ -5,8 +5,7 @@ function SignUpForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [bio, setBio] = useState("");
+  const [email, setEmail] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory()
@@ -24,15 +23,14 @@ function SignUpForm({ onLogin }) {
         username,
         password,
         password_confirmation: passwordConfirmation,
-        image_url: imageUrl,
-        bio,
+        email,
       })
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
         r.json().then((user) => {
           onLogin(user)
-          history.push("/new")
+          history.push("/pages")
         
         });
       } else {
@@ -74,21 +72,12 @@ function SignUpForm({ onLogin }) {
         />
       </FormField>
       <FormField>
-        <Label htmlFor="imageUrl">Profile Image</Label>
-        <Input
-          type="text"
-          id="imageUrl"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-        />
-      </FormField>
-      <FormField>
-        <Label htmlFor="bio">Bio</Label>
+        <Label htmlFor="email">Email</Label>
         <Textarea
           rows="3"
-          id="bio"
-          value={bio}
-          onChange={(e) => setBio(e.target.value)}
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </FormField>
       <FormField>
