@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2022_07_08_185343) do
 
   create_table "posts", force: :cascade do |t|
     t.bigint "page_id", null: false
-    t.string "title"
+    t.string "location"
     t.text "content"
     t.string "media_url"
     t.datetime "created_at", precision: 6, null: false

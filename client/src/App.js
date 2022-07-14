@@ -3,13 +3,13 @@ import { Switch, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Login from "./components/Login";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NewBrewery from "./components/NewBrewery";
-import BreweryContainer from "./containers/BreweriesConatainer";
+import NewPage from "./components/NewPage";
 import Home from "./components/Home";
 import ReviewsList from "./components/ReviewsList";
 import ReviewCard from "./components/ReviewCard";
 import BreweryCard from "./components/BreweryCard";
 import Profile from "./components/Profile";
+import PagesConatainer from "./containers/PagesConatainer";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -31,19 +31,19 @@ function App() {
         <Switch>
         <Route exact path="/"><Home/></Route>
           <Route path="/new">
-            <NewBrewery user={user} />
+            <NewPage user={user} />
           </Route>          
-          <Route path="/breweries/:id/reviews">
+          <Route path="/pages/:id/reviews">
             <ReviewsList user={user}/>
           </Route>
-          <Route path="/breweries/:id">
+          <Route path="/pages/:id">
             <BreweryCard user={user}/>
           </Route>
           <Route path="/reviews/:id">
             <ReviewCard user={user}/>
           </Route>
-          <Route path="/breweries">
-            <BreweryContainer user={user}/>
+          <Route path="/pages">
+            <PagesConatainer user={user}/>
           </Route>
           <Route path="/profile">
             <Profile user={user}/>
