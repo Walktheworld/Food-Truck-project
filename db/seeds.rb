@@ -6,16 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# puts "🌱 "
-# Review.delete_all
-# User.delete_all
-# Brewery.delete_all
+puts "🌱 "
+Review.delete_all
+User.delete_all
+Page.delete_all
 
-# joe = User.create( username:"joe", password:"12341234")
+joe = User.create( username:"JoeB123", password:"12341234", email:"email@email.com")
 
-# left_hand= Brewery.create(name: "Left Hand Brewery", address: "123 street", website: "website.com", phone:"1231231234", user_id:joe.id)
-# r1 = Review.create(post: "WOW", brewery_id:left_hand.id, user_id:joe.id)
+roll_up= Page.create(name: "Roll Up Food Truck", address: "123 street", website: "website.com", phone:"1231231234", user_id:joe.id)
+r1 = Review.create(comment: "WOW", page_id:roll_up.id, user_id:joe.id)
 
 
 
-# puts "✅ Done seeding!"
+puts "✅ Done seeding!"
