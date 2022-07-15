@@ -5,10 +5,10 @@ import { Button, FormField, Input, Label } from "../styles";
 import {useHistory} from "react-router-dom"
 
 
-const ReviewForm = ({breweryId, addNewReview}) => {
+const ReviewForm = ({pageId, addNewReview}) => {
     const [isLoading, setIsLoading] = useState(false);
     const [review, setReviews] = useState({
-        post: "",
+        comment: "",
     });
     const history = useHistory()
 
@@ -22,11 +22,11 @@ const ReviewForm = ({breweryId, addNewReview}) => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        if ([review.post].some(val => val.trim() === "")) {
+        if ([review.comment].some(val => val.trim() === "")) {
             alert("You must fill in all the information please!")
         }
 
-        fetch(`/api/breweries/${breweryId}/reviews`, {
+        fetch(`/api/pages/${pageId}/reviews`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -39,8 +39,8 @@ const ReviewForm = ({breweryId, addNewReview}) => {
                 resp.json()
                 .then(review => {
                     addNewReview(review)
-                    setReviews({post: review.post})
-                    history.push(`/breweries`);
+                    setReviews({comment: review.comment})
+                    history.push(`/pages`);
 
 
                 })
@@ -61,11 +61,11 @@ const ReviewForm = ({breweryId, addNewReview}) => {
 
           <form onSubmit={handleSubmit}>
             <FormField>
-              <Label htmlFor="post">Leave a review</Label>
+              <Label htmlFor="comment">Leave a review</Label>
               <Input
                 type="text"
-                name="post"
-                value={review.post}
+                name="comment"
+                value={review.comment}
                 onChange={handleChange}
               />
             </FormField>

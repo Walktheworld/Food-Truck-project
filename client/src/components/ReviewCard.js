@@ -16,7 +16,7 @@ const ReviewCard = ({review, users}) => {
     if (!finalReview) return <h1>Loading...</h1>
   return (
     <div>
-        <div>{finalReview.post} 
+        <div>{finalReview.comment} 
         <br/>
         Review by:{users? users.map((data, i) => {
           if (data.id === review.user_id)

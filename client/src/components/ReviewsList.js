@@ -3,12 +3,12 @@ import {useParams} from "react-router-dom"
 import {useState, useEffect} from "react"
 
 const ReviewsList = ({reviews, handleError}) => {
-    const {breweryId} = useParams()
+    const {pageId} = useParams()
     const [reviewsList, setReviewList] = useState([])
     
     useEffect(() => {
         if (!reviews) {
-            fetch(`/api/breweries/${breweryId}/reviews`)
+            fetch(`/api/pages/${pageId}/reviews`)
             .then(resp => {
                 if (resp.status === 200) {
                     resp.json()
@@ -20,7 +20,7 @@ const ReviewsList = ({reviews, handleError}) => {
             })
             .catch(error => handleError(error))
         }
-    }, [breweryId, reviews, handleError])
+    }, [pageId, reviews, handleError])
 
 
     const finalReviewsList = reviews ? reviews : reviewsList
