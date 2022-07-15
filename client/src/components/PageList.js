@@ -1,4 +1,4 @@
-import PageCard from "./BreweryCard"
+import PageCard from "./PageCard"
 import styled from "styled-components";
 
 
