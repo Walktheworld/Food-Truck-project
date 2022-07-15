@@ -3,10 +3,11 @@ const Home= () => {
     return (
         <Mainpage>
             <h3>
-                Please join us in building the most extensive brewery database in the world. 
-            </h3>
-            <h3>
-                Add breweries to the community and leave a review for your favorites! Belch It to the world!
+                With each passing day, food trucks have become more and more popular.
+                <br/>
+                So we have created a spot for nothing but your favorite food trucks. 
+                <br/>
+                Please leave a review for your favorites! We will see you there!
             </h3>
         </Mainpage>
     )

@@ -40,7 +40,7 @@ const Wrapper = styled.header`
 `;
 
 const Logo = styled.h1`
-  font-family: "Permanent Marker", cursive;
+  font-family: "Papyrus", cursive;
   font-size: 3rem;
   color: goldenrod;
   margin: 0;

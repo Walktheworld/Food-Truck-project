@@ -7,9 +7,9 @@ import NewPage from "./components/NewPage";
 import Home from "./components/Home";
 import ReviewsList from "./components/ReviewsList";
 import ReviewCard from "./components/ReviewCard";
-import BreweryCard from "./components/BreweryCard";
 import Profile from "./components/Profile";
 import PagesConatainer from "./containers/PagesConatainer";
+import PageCard from "./components/PageCard";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -37,7 +37,7 @@ function App() {
             <ReviewsList user={user}/>
           </Route>
           <Route path="/pages/:id">
-            <BreweryCard user={user}/>
+            <PageCard user={user}/>
           </Route>
           <Route path="/reviews/:id">
             <ReviewCard user={user}/>
