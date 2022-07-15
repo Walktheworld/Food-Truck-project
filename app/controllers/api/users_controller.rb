@@ -23,7 +23,7 @@ class Api::UsersController < ApplicationController
 
   private
   def serialized_user
-    @user.to_json(include: :breweries)
+    @user.to_json(include: :pages)
   end
 
   def user_params
