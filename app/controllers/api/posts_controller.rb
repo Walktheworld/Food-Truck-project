@@ -39,11 +39,11 @@ class Api::PostsController < ApplicationController
       end
       
       def serialized_post
-        @post.to_json(include: :reviews)
+        @post.to_json(include: :page)
       end
   
       def post_params
-        params.permit(:name, :website, :phone, :address)
+        params.permit(:location, :content, :media_url, :date)
       end
       
 end
