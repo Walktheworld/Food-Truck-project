@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react'
 
 
 const Profile = ({user}) => {
-    const [reviewedBreweries, setReviewedBreweries] = useState("");
+    const [reviewedPages, setReviewedPages] = useState("");
     const [loading, setLoading] = useState(true);
     
     
@@ -11,7 +11,7 @@ const Profile = ({user}) => {
             try {
                 const resp = await fetch("/api/profile")
                 const data = await resp.json()
-                setReviewedBreweries(data)
+                setReviewedPages(data)
                 setLoading(false)
             } catch (error) {
                 alert(error)
@@ -24,7 +24,7 @@ const Profile = ({user}) => {
     
     if (loading) return <h1>...Loading...</h1>
   return (
-      <div>{reviewedBreweries ? reviewedBreweries.map((data, i) => {
+      <div>{reviewedPages ? reviewedPages.map((data, i) => {
           return <div>{data.name}</div>
       }) : null}</div>
 
