@@ -19,7 +19,7 @@ function NavBar({ user, setUser }) {
       </Logo>
       <Nav>
         <Button as={Link} to="/pages">
-          Food Truck
+          Food Trucks
         </Button>
         <Button as={Link} to="/new">
           New Food Truck
