@@ -1,41 +1,41 @@
 import {useState} from "react"
 import {useHistory} from "react-router-dom"
 
-const EditBreweryForm = ({brewObj, handleUpdate}) => {
-    const [brewery, setBrewery] = useState({
-        name: brewObj.name,
-        address: brewObj.address,
-        phone: brewObj.phone,
-        website: brewObj.website
+const EditPageForm = ({pageObj, handleUpdate}) => {
+    const [page, setPage] = useState({
+        name: pageObj.name,
+        address: pageObj.address,
+        phone: pageObj.phone,
+        website: pageObj.website
     });
     const history = useHistory()
 
     const handleChange = (e) => {
-        setBrewery({
-            ...brewery,
+        setPage({
+            ...page,
             [e.target.name]: e.target.value
         })
     }
 
     const handleSubmit = e => {
         e.preventDefault()
-        if ([brewery.name, brewery.address, brewery.website].some(val => val.trim() === "")) {
+        if ([page.name, page.address, page.website].some(val => val.trim() === "")) {
             alert("You must fill in all the information please!")
         }
 
-       fetch(`/api/breweries/${brewObj.id}`, {
+       fetch(`/api/pages/${pageObj.id}`, {
            method: "PATCH",
            headers: {
                "Content-Type": "application/json"
            },
-           body: JSON.stringify({name: brewery.name, address: brewery.address, phone: brewery.phone, website: brewery.website})
+           body: JSON.stringify({name: page.name, address: page.address, phone: page.phone, website: page.website})
        })
        .then((resp) => {
             if (resp.status === 201) {
                 resp.json()
                 .then(data => {
                     handleUpdate(data)
-                    history.push(`/breweries`)
+                    history.push(`/pages`)
                 })
             } else {
                 resp.json()
@@ -50,13 +50,13 @@ const EditBreweryForm = ({brewObj, handleUpdate}) => {
             <h3>Edit Post</h3>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="name">Name</label>
-                <input onChange={handleChange} type="text" name="name" value={brewery.name} required/><br />
+                <input onChange={handleChange} type="text" name="name" value={page.name} required/><br />
                 <label htmlFor="phone">Phone</label>
-                <input onChange={handleChange} type="text" name="phone" value={brewery.phone}/><br />
+                <input onChange={handleChange} type="text" name="phone" value={page.phone}/><br />
                 <label htmlFor="website">website</label>
-                <input onChange={handleChange} type="text" name="website" value={brewery.website} required/><br />
+                <input onChange={handleChange} type="text" name="website" value={page.website} required/><br />
                 <label htmlFor="address">Address</label>
-                <input onChange={handleChange} type="text" name="address" value={brewery.address} required/><br />
+                <input onChange={handleChange} type="text" name="address" value={page.address} required/><br />
                 <input type="submit" value="Update Post" />
                 
             </form>
@@ -66,4 +66,4 @@ const EditBreweryForm = ({brewObj, handleUpdate}) => {
     )
 }
 
-export default EditBreweryForm
+export default EditPageForm
