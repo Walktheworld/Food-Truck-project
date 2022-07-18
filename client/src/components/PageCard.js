@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Box, Button } from "../styles";
 import ReviewForm from "./ReviewForm";
 import ReviewCard from "./ReviewCard";
-import EditBreweryForm from "./EditBreweryForm";
+import EditPageForm from "./EditPageForm";
 const PageCard= ({page, user}) => {
     const {id} = useParams()
     const [reviews, setReviews] = useState([]);
@@ -74,12 +74,12 @@ const PageCard= ({page, user}) => {
 
   
                         </Box>
-            {location.pathname !== "/pages/:id" && fianlPage?.user_id === user.id ? <>
+            {/* {location.pathname !== "/pages/:id" && fianlPage?.user_id === user.id ? <>
                 <Button name="edit-mode" id="edit-btn" onClick={handleClick}>Edit</Button>
                 &nbsp; &nbsp;
                 <Button name="delete" id="delete-btn" onClick={handleClick}>Delete</Button>
-            </> : null}
-            </> : <EditBreweryForm pageObj={fianlPage} handleUpdate={handleUpdate}/>}
+            </> : null} */}
+            </> : <EditPageForm pageObj={fianlPage} handleUpdate={handleUpdate}/>}
             <hr />
             {fianlPage.reviews.map((review) => <ReviewCard key={review.id} review={review} reviews={reviews} users={users}/>)} 
             <hr />
@@ -88,6 +88,11 @@ const PageCard= ({page, user}) => {
             <hr />
             <hr />
             </>) : null }
+            {location.pathname !== "/pages/:id" && fianlPage?.user_id === user.id ? <>
+                <Button name="edit-mode" id="edit-btn" onClick={handleClick}>Edit</Button>
+                &nbsp; &nbsp;
+                <Button name="delete" id="delete-btn" onClick={handleClick}>Delete</Button>
+            </> : null}
             </Page>
         </Wrapper>
     )
