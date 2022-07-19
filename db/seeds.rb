@@ -15,6 +15,7 @@ joe = User.create( username:"JoeB123", password:"12341234", email:"email@email.c
 
 roll_up= Page.create(name: "Roll Up Food Truck", address: "123 street", website: "website.com", phone:"1231231234", user_id:joe.id)
 r1 = Review.create(comment: "WOW", page_id:roll_up.id, user_id:joe.id)
+post1 = Post.create(content: "Come join us from 4pm-8pm", location:"Denver, CO", date:"7/1/2022", page_id:roll_up.id, user_id:joe.id)
 
 
 
