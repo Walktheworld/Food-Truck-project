@@ -5,9 +5,14 @@ import { Box, Button } from "../styles";
 import ReviewForm from "./ReviewForm";
 import ReviewCard from "./ReviewCard";
 import EditPageForm from "./EditPageForm";
+import PostForm from "./PostForm";
+import PostCard from "./PostCard";
+import PostList from "./PostList";
+
 const PageCard= ({page, user}) => {
     const {id} = useParams()
     const [reviews, setReviews] = useState([]);
+    const [posts, setPosts] = useState([]);
     const [editMode, setEditMode] = useState(false);
     const [pageObj, setPageObj] = useState(null);
     const location = useLocation()    
@@ -21,6 +26,7 @@ const PageCard= ({page, user}) => {
             .then(page => {
               setPageObj(page)
               setReviews(page.reviews)
+              setPosts(page.posts)
             })
         }
     }, [page, id]);
@@ -37,6 +43,10 @@ const PageCard= ({page, user}) => {
         setReviews(currentReviews => [reviewObj, ...currentReviews])
     }
 
+    const addNewPost = (postObj) => {
+      setReviews(currentPosts => [postObj, ...currentPosts])
+  }
+
     const handleUpdate = (updatedPageObj) => {
         setEditMode(false)
         setPageObj(updatedPageObj)
@@ -44,51 +54,56 @@ const PageCard= ({page, user}) => {
     
     const handleClick = (e) => { 
         if (e.target.name === "delete") {
-          fetch(`/api/pages/${fianlPage.id}`, {    method: "DELETE"
+          fetch(`/api/pages/${finalPage.id}`, {    method: "DELETE"
           })
           .then(() => history.push('/pages'))
         } else {
             setEditMode(true)
         }
     }
-    const fianlPage = page ? page : pageObj
+    const finalPage = page ? page : pageObj
 
-    if (!fianlPage) return <h1>Loading...</h1>
+    if (!finalPage) return <h1>Loading...</h1>
     return (
         <Wrapper>
-             <Page key={fianlPage.id}>
+             <Page key={finalPage.id}>
             {!editMode ?<> 
                         <Box>
-                            <h2 ><Link to={`/pages/${fianlPage.id}`}>{fianlPage.name}</Link></h2>
+                            <h2 ><Link to={`/pages/${finalPage.id}`}>{finalPage.name}</Link></h2>
                             <p>
-                            <em> {fianlPage.website} </em>
+                            <em> {finalPage.website} </em>
                             <br/>
                             &nbsp;·&nbsp;
-                            <em> {fianlPage.address} </em>
+                            <em> {finalPage.address} </em>
                             &nbsp;·&nbsp;
                             <br/>
-                            <em>Phone #: {fianlPage.phone} </em>
+                            <em>Phone #: {finalPage.phone} </em>
                             <br/>                            
-                            <em>Reviewed by {fianlPage.reviewers?.length || 0} users </em>
+                            <em>Reviewed by {finalPage.reviewers?.length || 0} users </em>
                             </p>
-
-  
+                            <hr />
+                            {location.pathname !== "/pages" && finalPage?.user_id === user.id ? (<>
+                              <PostForm addNewPost={addNewPost} pageId={finalPage.id} />
+                            </>) : null }
                         </Box>
-            {/* {location.pathname !== "/pages/:id" && fianlPage?.user_id === user.id ? <>
-                <Button name="edit-mode" id="edit-btn" onClick={handleClick}>Edit</Button>
-                &nbsp; &nbsp;
-                <Button name="delete" id="delete-btn" onClick={handleClick}>Delete</Button>
-            </> : null} */}
-            </> : <EditPageForm pageObj={fianlPage} handleUpdate={handleUpdate}/>}
+            </> : <EditPageForm pageObj={finalPage} handleUpdate={handleUpdate}/>}
+            
+            {/* {location.pathname !== "/pages" ? (<>
+              {finalPage.posts.map((post) => <ReviewCard key={post.id} post={post} posts={posts} users={users}/>)} 
             <hr />
-            {fianlPage.reviews.map((review) => <ReviewCard key={review.id} review={review} reviews={reviews} users={users}/>)} 
-            <hr />
+            </>) : null } */}
+
+            {/* <hr />
+            {finalPage.posts.map((post) => <ReviewCard key={post.id} post={post} posts={posts} users={users}/>)} 
+            <hr/> */}
+            
             {location.pathname !== "/pages" ? (<>
-                <ReviewForm addNewReview={addNewReview} pageId={fianlPage.id} />
+                <ReviewForm addNewReview={addNewReview} pageId={finalPage.id} />
             <hr />
+            {finalPage.reviews.map((review) => <ReviewCard key={review.id} review={review} reviews={reviews} users={users}/>)} 
             <hr />
             </>) : null }
-            {location.pathname !== "/pages/:id" && fianlPage?.user_id === user.id ? <>
+            {location.pathname !== "/pages/:id" && finalPage?.user_id === user.id ? <>
                 <Button name="edit-mode" id="edit-btn" onClick={handleClick}>Edit</Button>
                 &nbsp; &nbsp;
                 <Button name="delete" id="delete-btn" onClick={handleClick}>Delete</Button>

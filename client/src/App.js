@@ -10,6 +10,7 @@ import ReviewCard from "./components/ReviewCard";
 import Profile from "./components/Profile";
 import PagesConatainer from "./containers/PagesConatainer";
 import PageCard from "./components/PageCard";
+import PostCard from "./components/PostCard";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -42,12 +43,16 @@ function App() {
           <Route path="/reviews/:id">
             <ReviewCard user={user}/>
           </Route>
+          <Route path="/posts/:id">
+            <PostCard user={user}/>
+          </Route>
           <Route path="/pages">
             <PagesConatainer user={user}/>
           </Route>
           <Route path="/profile">
             <Profile user={user}/>
           </Route>
+
 
         </Switch>
       </main>
