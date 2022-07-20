@@ -43,7 +43,7 @@ const Logo = styled.h1`
   font-family: "Papyrus", cursive;
   font-size: 3rem;
   color: goldenrod;
-  margin: 0;
+  margin: 10px;
   line-height: 1;
 
   a {
