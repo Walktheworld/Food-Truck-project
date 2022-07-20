@@ -47,7 +47,7 @@ const EditPageForm = ({pageObj, handleUpdate}) => {
     }
     return (
         <>
-            <h3>Edit Post</h3>
+            <h3>Edit Page</h3>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="name">Name</label>
                 <input onChange={handleChange} type="text" name="name" value={page.name} required/><br />

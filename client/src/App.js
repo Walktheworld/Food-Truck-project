@@ -11,6 +11,7 @@ import Profile from "./components/Profile";
 import PagesConatainer from "./containers/PagesConatainer";
 import PageCard from "./components/PageCard";
 import PostCard from "./components/PostCard";
+import PostList from "./components/PostList";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -36,6 +37,9 @@ function App() {
           </Route>          
           <Route path="/pages/:id/reviews">
             <ReviewsList user={user}/>
+          </Route>
+          <Route path="/pages/:id/posts">
+            <PostList user={user}/>
           </Route>
           <Route path="/pages/:id">
             <PageCard user={user}/>

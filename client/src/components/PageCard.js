@@ -69,6 +69,7 @@ const PageCard= ({page, user}) => {
              <Page key={finalPage.id}>
             {!editMode ?<> 
                         <Box>
+                            <hr />
                             <h2 ><Link to={`/pages/${finalPage.id}`}>{finalPage.name}</Link></h2>
                             <p>
                             <em> {finalPage.website} </em>
@@ -78,23 +79,25 @@ const PageCard= ({page, user}) => {
                             &nbsp;·&nbsp;
                             <br/>
                             <em>Phone #: {finalPage.phone} </em>
-                            <br/>                            
-                            <em>Reviewed by {finalPage.reviewers?.length || 0} users </em>
+                            <br/> 
+                            {location.pathname === "/pages" ? (<em>Reviewed by {finalPage.reviewers?.length || 0} users </em>) : null }                              
                             </p>
                             <hr />
                             {location.pathname !== "/pages" && finalPage?.user_id === user.id ? (<>
                               <PostForm addNewPost={addNewPost} pageId={finalPage.id} />
                             </>) : null }
+                            {/* <PostList/> */}
                         </Box>
             </> : <EditPageForm pageObj={finalPage} handleUpdate={handleUpdate}/>}
-            
+             
             {/* {location.pathname !== "/pages" ? (<>
-              {finalPage.posts.map((post) => <ReviewCard key={post.id} post={post} posts={posts} users={users}/>)} 
+              {finalPage.posts.map((post) => <PostCard key={post.id} post={post} posts={posts} users={users}/>)} 
             <hr />
             </>) : null } */}
 
+
             {/* <hr />
-            {finalPage.posts.map((post) => <ReviewCard key={post.id} post={post} posts={posts} users={users}/>)} 
+            {finalPage.posts.map((post) => <PostList key={post.id} post={post} posts={posts} users={users}/>)} 
             <hr/> */}
             
             {location.pathname !== "/pages" ? (<>
