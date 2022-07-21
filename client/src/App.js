@@ -12,6 +12,7 @@ import PagesConatainer from "./containers/PagesConatainer";
 import PageCard from "./components/PageCard";
 import PostCard from "./components/PostCard";
 import PostList from "./components/PostList";
+import Contact from "./components/Contact";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -41,13 +42,13 @@ function App() {
           <Route path="/pages/:id/posts">
             <PostList user={user}/>
           </Route>
-          <Route path="/pages/:id">
+          <Route path="/pages/:pageId">
             <PageCard user={user}/>
           </Route>
           <Route path="/reviews/:id">
             <ReviewCard user={user}/>
           </Route>
-          <Route path="/posts/:id">
+          <Route path="/posts/:postId">
             <PostCard user={user}/>
           </Route>
           <Route path="/pages">
@@ -56,8 +57,9 @@ function App() {
           <Route path="/profile">
             <Profile user={user}/>
           </Route>
-
-
+          <Route path="/contact">
+            <Contact user={user}/>
+          </Route>
         </Switch>
       </main>
     </>
