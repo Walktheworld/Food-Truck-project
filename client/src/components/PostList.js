@@ -24,10 +24,9 @@ const PostList = ({posts, handleError}) => {
 
 
     const finalPostsList = posts ? posts : postsList
-    const renderReviews = finalPostsList?.map(post => <PostCard key={post.id} post={post}/>)
-
+    const renderPosts = finalPostsList?.map(post => <PostCard key={post.id} post={post}/>)
     return (
-        <div>{renderReviews}</div>
+        <div>{renderPosts}</div>
     )
 }
 

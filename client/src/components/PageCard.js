@@ -10,7 +10,7 @@ import PostCard from "./PostCard";
 import PostList from "./PostList";
 
 const PageCard= ({page, user}) => {
-    const {id} = useParams()
+    const {pageId} = useParams()
     const [reviews, setReviews] = useState([]);
     const [posts, setPosts] = useState([]);
     const [editMode, setEditMode] = useState(false);
@@ -21,7 +21,7 @@ const PageCard= ({page, user}) => {
     
     useEffect(() => {   
         if (!page) {
-            fetch(`/api/pages/${id}`)
+            fetch(`/api/pages/${pageId}`)
             .then(resp => resp.json())
             .then(page => {
               setPageObj(page)
@@ -29,7 +29,7 @@ const PageCard= ({page, user}) => {
               setPosts(page.posts)
             })
         }
-    }, [page, id]);
+    }, [page, pageId]);
 
     useEffect(() => {   
           fetch(`/api/users`)
@@ -62,6 +62,7 @@ const PageCard= ({page, user}) => {
         }
     }
     const finalPage = page ? page : pageObj
+    console.log(finalPage)
 
     if (!finalPage) return <h1>Loading...</h1>
     return (
@@ -86,20 +87,10 @@ const PageCard= ({page, user}) => {
                             {location.pathname !== "/pages" && finalPage?.user_id === user.id ? (<>
                               <PostForm addNewPost={addNewPost} pageId={finalPage.id} />
                             </>) : null }
-                            {/* <PostList/> */}
+                            <PostList posts={finalPage.posts}/>
+                            {/* {location.pathname === "/pages" ? ( <PostList posts={finalPage.posts}/>) : null } */}
                         </Box>
             </> : <EditPageForm pageObj={finalPage} handleUpdate={handleUpdate}/>}
-             
-            {/* {location.pathname !== "/pages" ? (<>
-              {finalPage.posts.map((post) => <PostCard key={post.id} post={post} posts={posts} users={users}/>)} 
-            <hr />
-            </>) : null } */}
-
-
-            {/* <hr />
-            {finalPage.posts.map((post) => <PostList key={post.id} post={post} posts={posts} users={users}/>)} 
-            <hr/> */}
-            
             {location.pathname !== "/pages" ? (<>
                 <ReviewForm addNewReview={addNewReview} pageId={finalPage.id} />
             <hr />
