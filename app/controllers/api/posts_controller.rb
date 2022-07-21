@@ -8,11 +8,10 @@ class Api::PostsController < ApplicationController
     end
 
     def create 
-      if params[:page_id]
-          page = Page.find(params[:page_id])
-          @post = @current_user.posts.create!(page: page, content: params[:content], location: params[:location], date: params[:date])
-          render json: serialized_post, status: 201
-      end
+      params[:page_id]
+        page = Page.find(params[:page_id])
+        @post = @current_user.posts.create!(page: page, content: params[:content], location: params[:location], date: params[:date])
+        render json: @post, status: 201
     end
       
     def destroy 
@@ -29,9 +28,9 @@ class Api::PostsController < ApplicationController
       @post = Post.find(params[:page_id])
     end
 
-    def serialized_post
-        @post.to_json(include: :page)
-    end
+    # def serialized_post
+    #     @post.to_json(include: :page)
+    # end
 
     def post_params
       params.permit(:content, :date, :location, :page_id )
