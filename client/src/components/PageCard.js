@@ -6,7 +6,6 @@ import ReviewForm from "./ReviewForm";
 import ReviewCard from "./ReviewCard";
 import EditPageForm from "./EditPageForm";
 import PostForm from "./PostForm";
-import PostCard from "./PostCard";
 import PostList from "./PostList";
 
 const PageCard= ({page, user}) => {
