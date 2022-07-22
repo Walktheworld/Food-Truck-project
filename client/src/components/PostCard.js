@@ -18,6 +18,8 @@ const PostCard = ({post, users}) => {
     <div>
         <div key={finalPost.id}>
             <div>{finalPost.content}</div>
+            <div>Where:{finalPost.location} When:{finalPost.date}</div>
+            <hr/>
         </div>
     </div>
   )
