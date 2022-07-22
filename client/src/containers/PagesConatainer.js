@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import PageList from "../components/PageList"
 
-const PagesConatainer = ({user}) => {
+const PagesConatainer = () => {
     const [pages, setPages] = useState([]);
     const [loading, setLoading] = useState(true);
     
@@ -19,13 +19,13 @@ const PagesConatainer = ({user}) => {
         }
         fetchData()
     }, []);
-
+console.log(pages)
 
     
     if (loading) return <h1>...Loading...</h1>
   return (
     <div>
-        <PageList pages={pages} user={user}  />
+        <PageList pages={pages}   />
     </div>
   )
 }

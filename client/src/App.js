@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { Switch, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Login from "./components/Login";
@@ -13,9 +13,11 @@ import PageCard from "./components/PageCard";
 import PostCard from "./components/PostCard";
 import PostList from "./components/PostList";
 import Contact from "./components/Contact";
+import { UserContext } from "./context/user";
+
 
 function App() {
-  const [user, setUser] = useState(null);
+  const {user, setUser} = useContext(UserContext)
 
   useEffect(() => {
     fetch("/api/me").then((r) => {
@@ -23,42 +25,42 @@ function App() {
         r.json().then((user) => setUser(user));
       }
     });
-  }, []);
+  }, [setUser]);
 
-  if (!user) return <Login onLogin={setUser} />;
+  if (!user) return <Login />;
 
   return (
     <>
-      <NavBar user={user} setUser={setUser} />
+      <NavBar />
       <main>
         <Switch>
         <Route exact path="/"><Home/></Route>
           <Route path="/new">
-            <NewPage user={user} />
+            <NewPage />
           </Route>          
           <Route path="/pages/:id/reviews">
-            <ReviewsList user={user}/>
+            <ReviewsList/>
           </Route>
           <Route path="/pages/:id/posts">
-            <PostList user={user}/>
+            <PostList/>
           </Route>
           <Route path="/pages/:pageId">
-            <PageCard user={user}/>
+            <PageCard/>
           </Route>
           <Route path="/reviews/:id">
-            <ReviewCard user={user}/>
+            <ReviewCard/>
           </Route>
           <Route path="/posts/:postId">
-            <PostCard user={user}/>
+            <PostCard/>
           </Route>
           <Route path="/pages">
-            <PagesConatainer user={user}/>
+            <PagesConatainer/>
           </Route>
           <Route path="/profile">
-            <Profile user={user}/>
+            <Profile/>
           </Route>
           <Route path="/contact">
-            <Contact user={user}/>
+            <Contact/>
           </Route>
         </Switch>
       </main>

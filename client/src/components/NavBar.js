@@ -1,9 +1,11 @@
-import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { UserContext } from "../context/user";
 import { Button } from "../styles";
 
-function NavBar({ user, setUser }) {
+function NavBar() {
+  const { setUser } =  useContext(UserContext);
   function handleLogoutClick() {
     fetch("/api/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
