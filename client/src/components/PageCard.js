@@ -6,7 +6,6 @@ import ReviewForm from "./ReviewForm";
 import ReviewCard from "./ReviewCard";
 import EditPageForm from "./EditPageForm";
 import PostForm from "./PostForm";
-import PostList from "./PostList";
 import { UserContext } from "../context/user";
 import PostCard from "./PostCard";
 
