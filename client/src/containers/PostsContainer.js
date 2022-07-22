@@ -1,9 +1,10 @@
 import {useState, useEffect} from 'react'
 import PostList from '../components/PostList';
 
-const PostsContainer = ({user}) => {
+const PostsContainer = () => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
+
     
     
     useEffect(() => {
@@ -25,7 +26,7 @@ const PostsContainer = ({user}) => {
     if (loading) return <h1>...Loading...</h1>
   return (
     <div>
-        <PostList posts={posts} user={user}  />
+        <PostList posts={posts}  />
     </div>
   )
 }
