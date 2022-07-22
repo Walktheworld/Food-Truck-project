@@ -10,15 +10,24 @@ class Api::PostsController < ApplicationController
     def create 
       params[:page_id]
         page = Page.find(params[:page_id])
-        @post = @current_user.posts.create!(page: page, content: params[:content], location: params[:location], date: params[:date])
+        @post = current_user.posts.create!(page: page, content: params[:content], location: params[:location], date: params[:date])
         render json: @post, status: 201
     end
+
+    def update 
+      @post&.update!(post_params)
+      render json: @post, status: :created
+    end
       
-    def destroy 
-      if @post&.destroy
-          render json: {message: "Successfully destroyed post!"}
+    def destroy
+      if @current_user.posts.include?(@post)
+          if @post&.destroy
+              render json: {message: "Successfully destroyed post!"}
+          else
+              render json: {error: @posts.errors.full_messages.to_sentence}
+          end
       else
-          render json: {error: @post.errors.full_messages.to_sentence}
+          no_route
       end
     end
 
