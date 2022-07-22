@@ -8,6 +8,7 @@ import EditPageForm from "./EditPageForm";
 import PostForm from "./PostForm";
 import PostList from "./PostList";
 import { UserContext } from "../context/user";
+import PostCard from "./PostCard";
 
 const PageCard= ({page}) => {
     const {pageId} = useParams()
@@ -78,7 +79,7 @@ const PageCard= ({page}) => {
                             {location.pathname !== "/pages" && finalPage?.user.id === user.id ? (<>
                               <PostForm addNewPost={addNewPost} pageId={finalPage.id} />
                             </>) : null }
-                            {location.pathname !== "/pages" ? ( <PostList posts={finalPage.posts}/>) : null }
+                            {location.pathname !== "/pages" ? (<>{finalPage.newest_post.map((post) => <PostCard key={post.id} post={post} posts={posts}/>)}</>) : null }
                         </Box>
             </> : <EditPageForm pageObj={finalPage} handleUpdate={handleUpdate}/>}
             {location.pathname !== "/pages" ? (<>
@@ -87,7 +88,7 @@ const PageCard= ({page}) => {
             {finalPage.reviews.map((review) => <ReviewCard key={review.id} review={review} reviews={reviews}/>)} 
             <hr />
             </>) : null }
-            {location.pathname !== "/pages/:id" && finalPage?.user.id === user.id ? <>
+            {location.pathname !== "/pages" && finalPage?.user.id === user.id ? <>
                 <Button name="edit-mode" id="edit-btn" onClick={handleClick}>Edit</Button>
                 &nbsp; &nbsp;
                 <Button name="delete" id="delete-btn" onClick={handleClick}>Delete</Button>
