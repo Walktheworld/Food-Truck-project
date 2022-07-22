@@ -11,7 +11,7 @@ class Api::ReviewsController < ApplicationController
       if params[:page_id]
           page = Page.find(params[:page_id])
           @review = @current_user.reviews.create!(page: page, comment: params[:comment])
-          render json: serialized_review, status: 201
+          render json: @review, status: 201
       end
     end
 
@@ -27,10 +27,6 @@ class Api::ReviewsController < ApplicationController
     
     def find_review
       @review = Review.find(params[:page_id])
-    end
-
-    def serialized_review
-        @review.to_json(include: :page)
     end
 
     def review_params
