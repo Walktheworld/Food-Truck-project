@@ -1,10 +1,11 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
+import { UserContext } from '../context/user';
 
 
 const Profile = () => {
     const [reviewedPages, setReviewedPages] = useState("");
     const [loading, setLoading] = useState(true);
-    
+    const {user} = useContext(UserContext)
     
     useEffect(() => {
         const fetchData = async () =>{
@@ -24,9 +25,13 @@ const Profile = () => {
     
     if (loading) return <h1>...Loading...</h1>
   return (
-      <div>{reviewedPages ? reviewedPages.map((data, i) => {
+      <div>
+        <h2>{user.username}'s Profile</h2>
+        <h4>{user.email}</h4>
+        <div>Reviewed trucks:{reviewedPages ? reviewedPages.map((data, i) => {
           return <div>{data.name}</div>
-      }) : null}</div>
+        }) : null}</div>
+      </div>
 
   )
 }

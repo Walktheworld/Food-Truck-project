@@ -16,8 +16,13 @@ function NavBar() {
 
   return (
     <Wrapper>
+      <Profile>
+        <Button as={Link} to="/profile">
+          Profile
+        </Button>
+      </Profile>
       <Logo>
-        <Link to="/">Food Truck Forum</Link>
+        <Link to="/">Food Truck<br/>Forum</Link>
       </Logo>
       <Nav>
         <Button as={Link} to="/pages">
@@ -40,6 +45,13 @@ const Wrapper = styled.header`
   align-items: center;
   padding: 8px;
 `;
+const Profile = styled.nav`
+  display: flex;
+  gap: 4px;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+`;
 
 const Logo = styled.h1`
   font-family: "Papyrus", cursive;
@@ -47,6 +59,7 @@ const Logo = styled.h1`
   color: goldenrod;
   margin: 10px;
   line-height: 1;
+  text-align: center;
 
   a {
     color: inherit;
@@ -59,6 +72,7 @@ const Nav = styled.nav`
   gap: 4px;
   position: absolute;
   right: 8px;
+  top: 8px;
 `;
 
 export default NavBar;
