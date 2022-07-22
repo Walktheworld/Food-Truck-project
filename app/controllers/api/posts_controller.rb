@@ -28,10 +28,6 @@ class Api::PostsController < ApplicationController
       @post = Post.find(params[:page_id])
     end
 
-    # def serialized_post
-    #     @post.to_json(include: :page)
-    # end
-
     def post_params
       params.permit(:content, :date, :location, :page_id )
     end

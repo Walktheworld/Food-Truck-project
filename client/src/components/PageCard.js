@@ -54,7 +54,6 @@ const PageCard= ({page}) => {
         }
     }
     const finalPage = page ? page : pageObj
-    console.log(finalPage)
 
     if (!finalPage) return <h1>Loading...</h1>
     return (

@@ -37,10 +37,6 @@ class Api::PagesController < ApplicationController
       def find_page
         @page = Page.find(params[:id])
       end
-      
-      # def serialized_page
-      #   @page.to_json(include: :reviews)
-      # end
   
       def page_params
         params.permit(:name, :website, :phone, :address)

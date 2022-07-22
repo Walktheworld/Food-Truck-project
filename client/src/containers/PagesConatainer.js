@@ -19,7 +19,6 @@ const PagesConatainer = () => {
         }
         fetchData()
     }, []);
-console.log(pages)
 
     
     if (loading) return <h1>...Loading...</h1>

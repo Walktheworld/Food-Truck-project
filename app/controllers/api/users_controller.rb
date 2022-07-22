@@ -22,9 +22,6 @@ class Api::UsersController < ApplicationController
   end
 
   private
-  def serialized_user
-    @user.to_json(include: :pages)
-  end
 
   def user_params
     params.permit(:username, :password, :password_confirmation, :image_url, :email)
