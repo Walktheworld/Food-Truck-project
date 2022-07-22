@@ -75,7 +75,7 @@ const PageCard= ({page}) => {
                             {location.pathname === "/pages" ? (<em>Reviewed by {finalPage.reviewers?.length || 0} users </em>) : null }                              
                             </p>
                             <hr />
-                            {location.pathname !== "/pages" && finalPage?.user_id === user.id ? (<>
+                            {location.pathname !== "/pages" && finalPage?.user.id === user.id ? (<>
                               <PostForm addNewPost={addNewPost} pageId={finalPage.id} />
                             </>) : null }
                             {location.pathname !== "/pages" ? ( <PostList posts={finalPage.posts}/>) : null }
@@ -87,7 +87,7 @@ const PageCard= ({page}) => {
             {finalPage.reviews.map((review) => <ReviewCard key={review.id} review={review} reviews={reviews}/>)} 
             <hr />
             </>) : null }
-            {location.pathname !== "/pages/:id" && finalPage?.user_id === user.id ? <>
+            {location.pathname !== "/pages/:id" && finalPage?.user.id === user.id ? <>
                 <Button name="edit-mode" id="edit-btn" onClick={handleClick}>Edit</Button>
                 &nbsp; &nbsp;
                 <Button name="delete" id="delete-btn" onClick={handleClick}>Delete</Button>
