@@ -7,12 +7,12 @@ class Api::PagesController < ApplicationController
       end
       
       def show 
-        render json: serialized_page
+        render json: @page
       end
   
       def create
         @page = current_user.pages.create!(page_params)
-        render json: serialized_page, status: 201
+        render json: @page, status: 201
       end
   
       def update 
@@ -38,9 +38,9 @@ class Api::PagesController < ApplicationController
         @page = Page.find(params[:id])
       end
       
-      def serialized_page
-        @page.to_json(include: :reviews)
-      end
+      # def serialized_page
+      #   @page.to_json(include: :reviews)
+      # end
   
       def page_params
         params.permit(:name, :website, :phone, :address)
