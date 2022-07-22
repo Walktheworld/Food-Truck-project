@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 
 
-const Profile = ({user}) => {
+const Profile = () => {
     const [reviewedPages, setReviewedPages] = useState("");
     const [loading, setLoading] = useState(true);
     

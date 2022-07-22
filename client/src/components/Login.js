@@ -14,7 +14,7 @@ function Login() {
       <Logo>Food Truck Forum</Logo>
       {showLogin ? (
         <>
-          <LoginForm onLogin={onLogin} />
+          <LoginForm />
           <Divider />
           <p>
             Don't have an account? &nbsp;

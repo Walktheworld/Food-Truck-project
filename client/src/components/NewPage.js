@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
+import { UserContext } from "../context/user";
 import { Button, Error, FormField, Input, Label } from "../styles";
 
-function NewPage({ user }) {
+function NewPage() {
   const [name, setName] = useState("Name");
   const [phone, setPhone] = useState("xxx-xxx-xxxx");
   const [website, setWebsite] = useState(`website`);
@@ -11,6 +12,7 @@ function NewPage({ user }) {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
+  const { user } = useContext(UserContext);
 
   const handleSubmit= e => {
     e.preventDefault();

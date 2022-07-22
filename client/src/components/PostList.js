@@ -22,7 +22,7 @@ const PostList = ({posts, handleError}) => {
         }
     }, [pageId, posts, handleError])
 
-
+    
     const finalPostsList = posts ? posts : postsList
     const renderPosts = finalPostsList?.map(post => <PostCard key={post.id} post={post}/>)
     return (
