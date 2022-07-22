@@ -20,7 +20,7 @@ class Api::PostsController < ApplicationController
     end
       
     def destroy
-      if @current_user.posts.include?(@post)
+      if current_user.posts.include?(@post)
           if @post&.destroy
               render json: {message: "Successfully destroyed post!"}
           else

@@ -83,9 +83,7 @@ const PageCard= ({page}) => {
             </> : <EditPageForm pageObj={finalPage} handleUpdate={handleUpdate}/>}
             {location.pathname !== "/pages" ? (<>
                 <ReviewForm addNewReview={addNewReview} pageId={finalPage.id} />
-            <hr />
             {finalPage.reviews.map((review) => <ReviewCard key={review.id} review={review} reviews={reviews}/>)} 
-            <hr />
             </>) : null }
             {location.pathname !== "/pages" && finalPage?.user.id === user.id ? <>
                 <Button name="edit-mode" id="edit-btn" onClick={handleClick}>Edit</Button>
