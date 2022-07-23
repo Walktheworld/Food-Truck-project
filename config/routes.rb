@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     get "/profile", to: "users#profile"
     resources :pages do
       resources :reviews, shallow: true
+    end
+    resources :pages do
       resources :posts, shallow: true
     end
   end
