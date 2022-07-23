@@ -1,18 +1,16 @@
-import {useState, useEffect, useContext} from "react"
+import {useState, useEffect} from "react"
 import {useParams} from "react-router-dom"
-import { UserContext } from "../context/user";
 
 const ReviewCard = ({review}) => {
-    const {id} = useParams()
+    const {reviewId} = useParams()
     const [reviewObj, setReviewObj] = useState([]);
-    const { user } = useContext(UserContext);
     useEffect(() => {   
         if (!review) {
-            fetch(`/api/reviews/${id}`)
+            fetch(`/api/reviews/${reviewId}`)
             .then(resp => resp.json())
             .then(review => setReviewObj(review))
         }
-    }, [review, id]);
+    }, [review, reviewId]);
 
     const finalReview = review ? review : reviewObj
     if (!finalReview) return <h1>Loading...</h1>
@@ -22,17 +20,8 @@ const ReviewCard = ({review}) => {
         <hr />
         {finalReview.comment} 
         <br/>
-        <h1> review by: {finalReview.user_id}</h1>
-          {/* Review by:{users? users.map((data, i) => {
-            if (data.id === review.user_id)
-              return <div key={i}>{data.username}</div>
-          }):null} */}
-
-          {/* Review by:{user? user.map((data, i) => {
-            if (data.id === review.user_id)
-              return <div key={i}>{data.username}</div>
-          }):null} */}
-          <hr />
+        <div> review by: {finalReview.review_by}</div>
+        <hr />
           
     </div>
   )

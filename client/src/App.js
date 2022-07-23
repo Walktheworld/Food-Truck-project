@@ -38,16 +38,16 @@ function App() {
           <Route path="/new">
             <NewPage />
           </Route>          
-          <Route path="/pages/:id/reviews">
+          <Route path="/pages/:pageId/reviews">
             <ReviewsList/>
           </Route>
-          <Route path="/pages/:id/posts">
+          <Route path="/pages/:pageId/posts">
             <PostList/>
           </Route>
           <Route path="/pages/:pageId">
             <PageCard/>
           </Route>
-          <Route path="/reviews/:id">
+          <Route path="/reviews/:reviewId">
             <ReviewCard/>
           </Route>
           <Route path="/posts/:postId">

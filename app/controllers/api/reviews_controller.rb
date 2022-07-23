@@ -7,10 +7,14 @@ class Api::ReviewsController < ApplicationController
       render json: reviews, include: :pages
     end
     
+    def show 
+      render json: @review
+    end
+    
     def create 
       params[:page_id]
         page = Page.find(params[:page_id])
-        @review = @current_user.reviews.create!(page: page, user: user, comment: params[:comment])
+        @review = @current_user.reviews.create!(page: page, comment: params[:comment])
         render json: @review, status: 201
     end
 
