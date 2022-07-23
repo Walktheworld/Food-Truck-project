@@ -1,5 +1,5 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :location, :content, :media_url, :date 
+  attributes :id, :location, :content, :date 
   belongs_to :page
 
 end

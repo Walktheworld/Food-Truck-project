@@ -25,15 +25,6 @@ class Api::PostsController < ApplicationController
     end
       
     def destroy
-      # if current_user.posts.include?(@post)
-      #     if @post&.destroy
-      #         render json: {message: "Successfully destroyed post!"}
-      #     else
-      #         render json: {error: @posts.errors.full_messages.to_sentence}
-      #     end
-      # else
-      #     no_route
-      # end
       @post&.destroy
       render json: {message: "Successfully destroyed post!"}
 
