@@ -1,18 +1,17 @@
 class Api::ReviewsController < ApplicationController
+
     before_action :find_review, only: [:show, :update, :destroy]
     
     def index
       reviews = Review.all
       render json: reviews, include: :pages
     end
-      
     
     def create 
-      if params[:page_id]
-          page = Page.find(params[:page_id])
-          @review = @current_user.reviews.create!(page: page, comment: params[:comment])
-          render json: @review, status: 201
-      end
+      params[:page_id]
+        page = Page.find(params[:page_id])
+        @review = @current_user.reviews.create!(page: page, user: user, comment: params[:comment])
+        render json: @review, status: 201
     end
 
     def destroy 
@@ -30,7 +29,7 @@ class Api::ReviewsController < ApplicationController
     end
 
     def review_params
-      params.permit(:comment, :page_id, :user)
+      params.permit(:comment, :page_id, :user_id)
     end
 
 
