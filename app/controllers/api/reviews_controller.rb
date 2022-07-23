@@ -26,11 +26,11 @@ class Api::ReviewsController < ApplicationController
       private
     
     def find_review
-      @review = Review.find(params[:page_id])
+      @review = Review.find(params[:id])
     end
 
     def review_params
-      params.permit(:comment, :page_id)
+      params.permit(:comment, :page_id, :user)
     end
 
 

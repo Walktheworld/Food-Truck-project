@@ -86,9 +86,9 @@ const PageCard= ({page}) => {
             {finalPage.reviews.map((review) => <ReviewCard key={review.id} review={review} reviews={reviews}/>)} 
             </>) : null }
             {location.pathname !== "/pages" && finalPage?.user.id === user.id ? <>
-                <Button name="edit-mode" id="edit-btn" onClick={handleClick}>Edit</Button>
+                <Button name="edit-mode" id="edit-btn" onClick={handleClick}>Edit Food Truck</Button>
                 &nbsp; &nbsp;
-                <Button name="delete" id="delete-btn" onClick={handleClick}>Delete</Button>
+                <Button name="delete" id="delete-btn" onClick={handleClick}>Delete Food Truck</Button>
             </> : null}
             </Page>
         </Wrapper>
