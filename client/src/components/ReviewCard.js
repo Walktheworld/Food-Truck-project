@@ -14,7 +14,6 @@ const ReviewCard = ({review}) => {
 
     const finalReview = review ? review : reviewObj
     if (!finalReview) return <h1>Loading...</h1>
-    console.log(finalReview)
   return (
     <div>
         <hr />

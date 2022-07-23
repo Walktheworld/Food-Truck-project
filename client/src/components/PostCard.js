@@ -16,7 +16,6 @@ const PostCard = ({post}) => {
         }
     }, [post, postId]);
 
-    console.log(postId)
     const handleDelete = () => { 
         fetch(`/api/posts/${finalPost.id}`,{
             method: "DELETE",
@@ -33,7 +32,6 @@ const PostCard = ({post}) => {
 
     const finalPost = post ? post : postObj
     if (!finalPost) return <h1>Loading...</h1>
-    console.log(finalPost)
   return (
     <div>
         <div key={finalPost.id}>
