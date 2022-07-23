@@ -22,7 +22,7 @@ const ReviewCard = ({review}) => {
         <hr />
         {finalReview.comment} 
         <br/>
-        <h1> review by: {finalReview.user_id?.username}</h1>
+        <h1> review by: {finalReview.user_id}</h1>
           {/* Review by:{users? users.map((data, i) => {
             if (data.id === review.user_id)
               return <div key={i}>{data.username}</div>
