@@ -15,13 +15,14 @@ const ReviewCard = ({review}) => {
     const finalReview = review ? review : reviewObj
     if (!finalReview) return <h1>Loading...</h1>
   return (
-    <div>
-        <hr />
-        {finalReview.comment} 
-        <br/>
-        <div> review by: {finalReview.review_by}</div>
-        <hr />
-          
+    <div >
+        <div key={finalReview.id}>
+          <hr />
+          {finalReview.comment} 
+          <br/>
+          <div> review by: {finalReview.review_by}</div>
+          <hr />
+         </div> 
     </div>
   )
 }

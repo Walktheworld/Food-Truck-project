@@ -29,7 +29,7 @@ const Profile = () => {
         <h2>{user.username}'s Profile</h2>
         <h4>{user.email}</h4>
         <div>Reviewed trucks:{reviewedPages ? reviewedPages.map((data, i) => {
-          return <div>{data.name}</div>
+          return <div key={data.id}>{data.name}</div>
         }) : null}</div>
       </div>
 

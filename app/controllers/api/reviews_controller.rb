@@ -3,8 +3,9 @@ class Api::ReviewsController < ApplicationController
     before_action :find_review, only: [:show, :update, :destroy]
     
     def index
-      reviews = Review.all
-      render json: reviews, include: :pages
+      params[:page_id]
+      page = Page.find(params[:page_id])
+      render json: page.reviews
     end
     
     def show 

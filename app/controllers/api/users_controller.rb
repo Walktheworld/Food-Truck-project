@@ -17,7 +17,7 @@ class Api::UsersController < ApplicationController
   end
 
   def profile
-    reviewed = @current_user.reviewed_pages
+    reviewed = @current_user.reviewed_pages.uniq
     render json: reviewed
   end
 

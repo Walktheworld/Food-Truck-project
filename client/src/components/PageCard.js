@@ -3,11 +3,11 @@ import { useParams, useLocation, Link, useHistory } from "react-router-dom"
 import styled from "styled-components";
 import { Box, Button } from "../styles";
 import ReviewForm from "./ReviewForm";
-import ReviewCard from "./ReviewCard";
 import EditPageForm from "./EditPageForm";
 import PostForm from "./PostForm";
 import { UserContext } from "../context/user";
 import PostCard from "./PostCard";
+import ReviewsList from "./ReviewsList";
 
 const PageCard= ({page}) => {
     const {pageId} = useParams()
@@ -83,7 +83,7 @@ const PageCard= ({page}) => {
             </> : <EditPageForm pageObj={finalPage} handleUpdate={handleUpdate}/>}
             {location.pathname !== "/pages" ? (<>
                 <ReviewForm addNewReview={addNewReview} pageId={finalPage.id} />
-            {finalPage.reviews.map((review) => <ReviewCard key={review.id} review={review} reviews={reviews}/>)} 
+                <ReviewsList key={reviews.id}/>
             </>) : null }
             {location.pathname !== "/pages" && finalPage?.user.id === user.id ? <>
                 <Button name="edit-mode" id="edit-btn" onClick={handleClick}>Edit Food Truck</Button>
