@@ -20,6 +20,9 @@ function NavBar() {
         <Button as={Link} to="/profile">
           Profile
         </Button>
+        <Button as={Link} to="/subscribe">
+          Subscribe
+        </Button>
       </Profile>
       <Logo>
         <Link to="/">Food Truck<br/>Forum</Link>

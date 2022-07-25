@@ -81,6 +81,7 @@ const PageCard= ({page}) => {
                             {location.pathname !== "/pages" ? (<>{finalPage.newest_post.map((post) => <PostCard key={post.id} post={post} posts={posts}/>)}</>) : null }
                         </Box>
             </> : <EditPageForm pageObj={finalPage} handleUpdate={handleUpdate}/>}
+
             {location.pathname !== "/pages" ? (<>
                 <ReviewForm addNewReview={addNewReview} pageId={finalPage.id} />
                 <ReviewsList key={reviews.id}/>
