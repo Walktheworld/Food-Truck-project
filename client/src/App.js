@@ -12,8 +12,8 @@ import PagesConatainer from "./containers/PagesConatainer";
 import PageCard from "./components/PageCard";
 import PostCard from "./components/PostCard";
 import PostList from "./components/PostList";
-import Contact from "./components/Contact";
 import { UserContext } from "./context/user";
+import Subscribe from "./components/Subscribe";
 
 
 function App() {
@@ -59,8 +59,8 @@ function App() {
           <Route path="/profile">
             <Profile/>
           </Route>
-          <Route path="/contact">
-            <Contact/>
+          <Route path="/subscribe">
+            <Subscribe/>
           </Route>
         </Switch>
       </main>
