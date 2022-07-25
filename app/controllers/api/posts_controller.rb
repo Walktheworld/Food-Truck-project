@@ -12,6 +12,11 @@ class Api::PostsController < ApplicationController
       render json: current_user.posts
     end
 
+    def update 
+      @post&.update!(post_params)
+      render json: @post, status: :created
+    end
+
     def create 
       params[:page_id]
         page = Page.find(params[:page_id])

@@ -6,7 +6,43 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+## User
+(has many :pages)
+(has many :reviews)
+(has many :posts)
 
+`user` table
+- username
+- email
+- password
+
+## Pages
+(belongs to :user)
+(has many :reviews)
+(has many :posts)
+
+`page` table
+- name
+- phone
+- address
+- website
+- bio
+
+## Review
+(belongs to :user)
+(belongs to :brewery)
+
+`review` table
+- comment
+
+## Post
+(belongs to :user)
+(belongs to :page)
+
+`post` table
+- content
+- location
+- date
 
 ## Resources
 
