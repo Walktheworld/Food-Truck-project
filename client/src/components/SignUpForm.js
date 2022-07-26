@@ -14,7 +14,6 @@ function SignUpForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setErrors([]);
     setIsLoading(true);
     fetch("/api/signup", {
       method: "POST",
@@ -37,6 +36,7 @@ function SignUpForm() {
         });
       } else {
         r.json().then((err) => setErrors(err.errors));
+
       }
     });
   }
@@ -86,7 +86,7 @@ function SignUpForm() {
         <Button type="submit">{isLoading ? "Loading..." : "Sign Up"}</Button>
       </FormField>
       <FormField>
-        {errors.map((err) => (
+        {errors?.map((err) => (
           <Error key={err}>{err}</Error>
         ))}
       </FormField>

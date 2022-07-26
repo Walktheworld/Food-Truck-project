@@ -53,7 +53,7 @@ const PostForm = ({pageId, addNewPost}) => {
             } else {
                 resp.json()
                 .then(errorObj => {
-                    alert(errorObj.error)
+                    alert(errorObj.errors)
                     
                 })
             }
